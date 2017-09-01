@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.art.base.delegate.IActivity;
 import com.example.art.mvp.IPresenter;
@@ -26,7 +25,7 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Toast.makeText(this, getClass().getSimpleName() + " is debug ?", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, getClass().getSimpleName() + " is debug ?", Toast.LENGTH_LONG).show();
 
         int layoutResID = initView(savedInstanceState);
         try {

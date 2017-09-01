@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.example.administrator.my80.widget.BounceScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_me_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--<View-->
+        <!--android:id="@+id/view_detail_top"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/top_padding_statu"-->
+        <!--/>-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@drawable/me_bg_no_alf"
+            android:paddingTop="@dimen/top_padding_statu"
+            >
+
+            <com.lqr.optionitemview.OptionItemView
+                android:id="@+id/top_bar_option"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:clipToPadding="true"
+                android:fitsSystemWindows="true"
+                app:left_src="@mipmap/wd_sz"
+                app:right_src="@mipmap/wd_xx"
+                app:splite_mode="true" />
+            <!--<include layout="@layout/toolbar_3_0" />-->
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_circle_head"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_persion_pic" />
+
+
+            <TextView
+                android:id="@+id/tv_usrname_relname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_circle_head"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="8dp"
+
+                android:text="@string/app_name"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/sptv_wd_bjzl"
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                android:contentDescription="@string/app_name"
+                android:background="@drawable/wd_bjzl_seletor"
+                android:layout_below="@+id/iv_circle_head"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="15dp"
+                android:layout_alignParentEnd="true" />
+
+            <!--<com.coorchice.library.SuperTextView-->
+            <!--android:id="@+id/sptv_wd_bjzl"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginBottom="30dp"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:paddingBottom="3dp"-->
+            <!--android:paddingLeft="10dp"-->
+            <!--android:paddingRight="10dp"-->
+            <!--android:paddingTop="3dp"-->
+            <!--android:text="编辑资料"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:background="@drawable/app_loading0"-->
+            <!--android:textSize="13sp"-->
+            <!--app:corner="@dimen/x9"-->
+            <!--app:left_bottom_corner="true"-->
+            <!--app:left_top_corner="true"-->
+            <!--app:right_bottom_corner="true"-->
+            <!--app:right_top_corner="true"-->
+            <!--app:solid="@color/white_60"-->
+            <!--/>-->
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_mmgl"
+                style="@style/home_types"
+                android:text="苗木管理"
+                app:state_drawable="@mipmap/wd_mmgl" />
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_bjgl"
+                style="@style/home_types"
+                android:text="我的报价"
+                app:state_drawable="@mipmap/wd_bjgl" />
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_wddp"
+                style="@style/home_types"
+                android:text="我的店铺"
+                app:state_drawable="@mipmap/wd_wddp" />
+
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_dpsz"
+                style="@style/home_types"
+                android:text="店铺设置"
+                app:state_drawable="@mipmap/wd_dpsz" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white">
+
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_mydz"
+                style="@style/home_types"
+                android:text="苗源地址"
+                app:state_drawable="@mipmap/wd_mydz" />
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_wdxm"
+                style="@style/home_types"
+                android:text="我的项目"
+                android:visibility="visible"
+                app:state_drawable="@mipmap/wd_wdxm" />
+
+            <com.coorchice.library.SuperTextView
+                style="@style/home_types"
+                android:text="发货任务"
+                android:visibility="invisible"
+                app:state_drawable="@mipmap/wd_fhrw"
+                tools:visibility="visible" />
+
+
+            <com.coorchice.library.SuperTextView
+                style="@style/home_types"
+                android:text="合伙人"
+                android:visibility="invisible"
+                app:state_drawable="@mipmap/wd_hhr"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+
+        <View
+
+            style="@style/View_line_gray" />
+
+        <com.lqr.optionitemview.OptionItemView
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@android:color/white"
+            app:left_text="其他"
+            app:left_text_color="@android:color/black"
+
+            />
+
+        <View style="@style/View_line_gray_1dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_zhaq"
+                style="@style/home_types"
+                android:text="账户安全"
+                app:state_drawable="@mipmap/wd_zhaq" />
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_fxapp"
+                style="@style/home_types"
+                android:text="分享APP"
+                app:state_drawable="@mipmap/wd_fxapp" />
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_kf"
+                style="@style/home_types"
+                android:text="@string/beautiful_girl"
+                app:state_drawable="@mipmap/wd_kf" />
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_yhfk"
+                style="@style/home_types"
+                android:text="@string/feedback"
+                app:state_drawable="@mipmap/wd_yhfk" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</com.example.administrator.my80.widget.BounceScrollView>

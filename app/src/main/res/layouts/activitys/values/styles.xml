@@ -1,0 +1,32 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <style name="home_types">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">bottom|center_horizontal</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="isShowState">true</item>
+        <item name="state_drawable_height">40dp</item>
+        <item name="state_drawable_mode">top</item>
+        <item name="state_drawable_padding_top">8dp</item>
+        <item name="state_drawable_width">40dp</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <!--app:isShowState="true         app:state_drawable="@mipmap/wd_mmgl""-->
+
+    </style>
+
+    <style name="CollapsingToolbarTitleStyle.About" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+    <!--<item name="app:state_drawable_height">40dp</item>
+            <item name="app:state_drawable_mode">top</item>
+            <item name="app:state_drawable_padding_top">8dp</item>
+            <item name="app:state_drawable_width">40dp</item>-->
+
+
+
+
+
+</resources>

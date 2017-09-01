@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SHCircleProgressBar">
+        <attr name="inner_radius" format="dimension" />
+        <attr name="background_color" format="color" />
+        <attr name="progress_color" format="color" />
+        <attr name="progress_stoke_width" format="dimension" />
+        <attr name="show_arrow" format="boolean" />
+        <attr name="enable_circle_background" format="boolean" />
+        <attr name="arrow_width" format="dimension" />
+        <attr name="arrow_height" format="dimension" />
+        <attr name="progress" format="integer" />
+        <attr name="max" format="integer" />
+        <attr name="progress_text_size" format="dimension" />
+        <attr name="progress_text_color" format="color" />
+        <!--<attr name="progress_text_visibility" format="enum">-->
+            <!--<enum name="visible" value="0" />-->
+            <!--<enum name="invisible" value="1" />-->
+        <!--</attr>-->
+    </declare-styleable>
+    <declare-styleable name="MySwipeRefreshLayout">
+        <attr name="guidance_view_bg_color" format="color|reference" />
+        <attr name="guidance_text_color" format="color|reference" />
+        <attr name="progress_bar_color" format="color|reference" />
+        <attr name="progress_bg_color" format="color|reference" />
+        <attr name="refresh_text" format="string|reference" />
+        <attr name="load_text" format="string|reference" />
+        <attr name="pull_refresh_enable" format="boolean" />
+        <attr name="loadmore_enable" format="boolean" />
+    </declare-styleable>
+
+
+
+
+    <!--recycle viewpager-->
+    <declare-styleable name="RecyclerViewPager">
+
+        <attr format="float" name="rvp_triggerOffset"/>
+
+        <attr format="float" name="rvp_flingFactor"/>
+
+        <attr format="boolean" name="rvp_singlePageFling"/>
+
+    </declare-styleable>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:weightSum="4">
+
+    <com.coorchice.library.SuperTextView
+        android:id="@+id/stv_home_1"
+        style="@style/home_types"
+        android:text="苗木管理"
+        app:state_drawable="@mipmap/home_mmgl" />
+
+    <com.coorchice.library.SuperTextView
+        android:id="@+id/stv_home_2"
+        style="@style/home_types"
+        android:text="采购报价"
+        app:state_drawable="@mipmap/home_kuaisubj" />
+
+    <com.coorchice.library.SuperTextView
+        android:id="@+id/stv_home_3"
+        style="@style/home_types"
+        android:text="成交公告"
+        app:state_drawable="@mipmap/home_chengjiaogg" />
+
+    <com.coorchice.library.SuperTextView
+        android:id="@+id/stv_home_4"
+        style="@style/home_types"
+        android:text="新闻资讯"
+        app:state_drawable="@mipmap/home_xinwenzx" />
+
+
+
+</LinearLayout>

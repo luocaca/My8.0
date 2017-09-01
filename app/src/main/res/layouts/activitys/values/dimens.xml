@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titleSize">18sp</dimen>
+    <dimen name="titleRightTex">16sp</dimen>
+    <dimen name="backWH">30dp</dimen>
+
+
+    <dimen name="textSizeS">12sp</dimen>
+    <dimen name="textSize">13sp</dimen>
+    <dimen name="textSizeX">14sp</dimen>
+    <dimen name="textSizeXX">15sp</dimen>
+    <dimen name="textSizeXXX">16sp</dimen>
+    <dimen name="textSizeXXXX">18sp</dimen>
+    <dimen name="home_search_padding">-65dp</dimen>
+</resources>

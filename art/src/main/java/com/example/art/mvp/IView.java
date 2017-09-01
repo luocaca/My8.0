@@ -21,7 +21,7 @@ public interface IView {
      * 显示主界面
      */
 
-    void showMessage(Message message);
+    void showMessage(String message);
 
 
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_share_qq"
+        android:gravity="top"
+        android:text="@string/home" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_share_qq"
+        android:gravity="top"
+        android:text="@string/home" />
+
+
+    <EditText
+        android:id="@+id/et_domain"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:background="@null"
+        android:digits = "abcdefghijklmnopqrstuvwxyz1234567890"
+        android:gravity="center_vertical"
+        android:hint="最少输入4个数字或字母组成的字符"
+
+        android:textColorHint="@color/colorAccent"
+        android:textSize="@dimen/textSizeXX" />
+</LinearLayout>

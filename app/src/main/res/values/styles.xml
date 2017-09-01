@@ -1,11 +1,23 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/AnimaActivity</item>
+
+        <!--<item name="android:windowBackground">@android:color/white</item>-->
+    </style>
+
+
+    <style name="AnimaActivity">
+        <item name="android:activityOpenEnterAnimation">@anim/translate_right_to_center</item>
+        <item name="android:activityOpenExitAnimation">@anim/translate_center_to_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/translate_left_to_center</item>
+        <item name="android:activityCloseExitAnimation">@anim/translate_center_to_right</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -23,5 +35,55 @@
         <item name="overlapAnchor">false</item>
 
     </style>
+
+
+    <style name="View_line_gray_1dp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/gray_bg</item>
+    </style>
+
+
+    <style name="View_line_gray">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:background">@color/gray_bg_ed</item>
+    </style>
+
+
+    <!--自定义Dialog样式-->
+    <style name="MyDialog" parent="AlertDialog.AppCompat">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--顶部弹出Dialog动画-->
+    <style name="TopDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_top_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_top_out</item>
+    </style>
+
+    <!--底部弹出Dialog动画-->
+    <style name="BottomDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_bottom_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_bottom_out</item>
+    </style>
+
+    <!--左边弹出Dialog动画-->
+    <style name="LeftDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_left_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_left_out</item>
+    </style>
+
+    <!--右边弹出Dialog动画-->
+    <style name="RightDialog" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/dialog_right_in</item>
+        <item name="@android:windowExitAnimation">@anim/dialog_right_out</item>
+    </style>
+
+
+
+
+
 
 </resources>
