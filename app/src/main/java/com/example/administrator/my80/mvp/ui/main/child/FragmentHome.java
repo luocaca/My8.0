@@ -1,9 +1,9 @@
 package com.example.administrator.my80.mvp.ui.main.child;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.ColorUtils;
 import android.support.v7.widget.LinearLayoutManager;
@@ -56,7 +56,6 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     }
 
 
-
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.rv)
@@ -69,10 +68,6 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     private int bannerHeight;
     private View headView;
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
 
     @Override
     public void lazyLoadAftFragmentViewCreated() {
@@ -97,7 +92,6 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     }
 
 
-
     @Override
     protected void initView() {
         refreshLayout.setEnableLoadmore(false);
@@ -109,6 +103,8 @@ public class FragmentHome extends BaseLazyFragment implements IView {
         mRv.setAdapter(mOneAdapter);
         addHeaderView();
         addHeaderView1();
+//        addHeadViewLine();
+//        addHeaderViewMarQuee();
 //        mOneAdapter.setPreLoadNumber(1);
         mOneAdapter.setNewData(mItemList);
     }
@@ -128,13 +124,28 @@ public class FragmentHome extends BaseLazyFragment implements IView {
         }
     }
 
-
     private void addHeaderView1() {
-
-            headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head, (ViewGroup) mRv.getParent(), false);
-            mOneAdapter.addHeaderView(headView);
+        headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head, (ViewGroup) mRv.getParent(), false);
+        mOneAdapter.addHeaderView(headView);
 
     }
+
+    private void addHeaderViewMarQuee() {
+
+        View quee = LayoutInflater.from(mActivity).inflate(R.layout.up_marquee, (ViewGroup) mRv.getParent(), false);
+        mOneAdapter.addHeaderView(quee);
+
+    }
+
+
+    private void addHeadViewLine() {
+        View view = new View(mActivity);
+        view.setLayoutParams(new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 50));
+        view.setPadding(0, 0, 0, 200);
+        view.setBackground(new ColorDrawable(Color.GRAY));
+        mOneAdapter.addHeaderView(view);
+    }
+
 
     @Override
     protected void setListener() {

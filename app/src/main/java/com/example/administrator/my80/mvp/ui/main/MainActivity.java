@@ -5,14 +5,16 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
 
+import com.blankj.ALog;
 import com.example.administrator.my80.R;
+import com.example.administrator.my80.mvp.p.UserInfoPresenter;
 import com.example.administrator.my80.mvp.ui.main.child.FragmentFavor;
 import com.example.administrator.my80.mvp.ui.main.child.FragmentHome;
 import com.example.administrator.my80.mvp.ui.main.child.FragmentPerson;
 import com.example.administrator.my80.mvp.ui.main.child.FragmentShop;
-import com.example.administrator.my80.mvp.p.UserInfoPresenter;
 import com.example.administrator.my80.widget.BottomNavigationViewEx;
 import com.example.art.base.AdapterViewPager;
 import com.example.art.base.App;
@@ -26,7 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity<UserInfoPresenter> implements IView {
+public class MainActivity extends BaseActivity<UserInfoPresenter> implements IView{
 
     private RxPermissions mRxPermissions;
 
@@ -89,9 +91,11 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
                     break;
                 case R.id.navigation_favorite:
                     viewPageContent.setCurrentItem(2);
+                    Log.e(TAG, "onNavigationItemSelected: onCreate: (MainActivity.java:98)"  );
                     break;
                 case R.id.navigation_person:
                     viewPageContent.setCurrentItem(3);
+                    ALog.e("me");
                     break;
             }
             // 这里必须返回true才能响应点击事件
@@ -144,4 +148,6 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
     public void handleMessage(Message message) {
 
     }
+
+
 }
