@@ -1,4 +1,4 @@
-package com.example.administrator.my80.mvp.m.entity;
+package com.example.administrator.my80.mvp.m.entity.common;
 
 import java.io.Serializable;
 

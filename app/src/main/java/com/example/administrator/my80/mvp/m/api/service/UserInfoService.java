@@ -1,7 +1,7 @@
 package com.example.administrator.my80.mvp.m.api.service;
 
-import com.example.administrator.my80.mvp.m.entity.BaseJson;
-import com.example.administrator.my80.mvp.m.entity.UserInfo;
+import com.example.administrator.my80.mvp.m.entity.base.BaseJson;
+import com.example.administrator.my80.mvp.m.entity.common.UserInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.POST;

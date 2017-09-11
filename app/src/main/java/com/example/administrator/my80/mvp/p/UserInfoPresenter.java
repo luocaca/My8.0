@@ -2,9 +2,9 @@ package com.example.administrator.my80.mvp.p;
 
 import android.util.Log;
 
-import com.example.administrator.my80.mvp.m.UserInfoRepository;
-import com.example.administrator.my80.mvp.m.entity.BaseJson;
-import com.example.administrator.my80.mvp.m.entity.UserInfo;
+import com.example.administrator.my80.mvp.m.entity.repository.UserInfoRepository;
+import com.example.administrator.my80.mvp.m.entity.base.BaseJson;
+import com.example.administrator.my80.mvp.m.entity.common.UserInfo;
 import com.example.art.di.component.AppComponent;
 import com.example.art.mvp.BasePresenter;
 import com.example.art.mvp.Message;

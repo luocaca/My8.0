@@ -1,8 +1,8 @@
-package com.example.administrator.my80.mvp.m;
+package com.example.administrator.my80.mvp.m.entity.repository;
 
-import com.example.administrator.my80.mvp.m.api.service.UserInfoService;
-import com.example.administrator.my80.mvp.m.entity.BaseJson;
-import com.example.administrator.my80.mvp.m.entity.UserInfo;
+import com.example.administrator.my80.mvp.m.api.service.CommonService;
+import com.example.administrator.my80.mvp.m.entity.base.BaseJson;
+import com.example.administrator.my80.mvp.m.entity.common.UserInfo;
 import com.example.art.mvp.IModel;
 import com.example.art.mvp.IRepositoryManager;
 
@@ -27,7 +27,7 @@ public class UserInfoRepository implements IModel {
 
 
     public Observable<BaseJson<UserInfo>> getUserInfo(String authId, boolean update) {
-        Observable<BaseJson<UserInfo>> userInfo = mManager.createRetrofitService(UserInfoService.class).getUserInfo();
+        Observable<BaseJson<UserInfo>> userInfo = mManager.createRetrofitService(CommonService.class).getUserInfo();
 
         return userInfo ;
 //        return  userInfo;

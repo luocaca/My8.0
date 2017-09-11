@@ -3,6 +3,7 @@ package com.example.administrator.my80.mvp.ui.main;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -23,12 +24,16 @@ import com.example.art.mvp.IView;
 import com.example.art.mvp.Message;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
+import org.simple.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity<UserInfoPresenter> implements IView{
+public class MainActivity extends BaseActivity<UserInfoPresenter> implements IView {
 
     private RxPermissions mRxPermissions;
 
@@ -50,14 +55,15 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
             add(new FragmentShop());
             add(new FragmentFavor());
             add(new FragmentPerson());
+//            add(new FragmentPerson());
+//            add(new FragmentPerson());
+//            add(new FragmentPerson());
         }
     };
 
 
-
-
     // 为ViewPager添加页面改变事件
-      ViewPager.OnPageChangeListener vl = new ViewPager.OnPageChangeListener() {
+    ViewPager.OnPageChangeListener vl = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -76,7 +82,6 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
     };
 
 
-
     // 为bnv设置选择监听事件
     BottomNavigationView.OnNavigationItemSelectedListener b = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -91,17 +96,25 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
                     break;
                 case R.id.navigation_favorite:
                     viewPageContent.setCurrentItem(2);
-                    Log.e(TAG, "onNavigationItemSelected: onCreate: (MainActivity.java:98)"  );
+                    Log.e(TAG, "onNavigationItemSelected: onCreate: (MainActivity.java:98)");
                     break;
                 case R.id.navigation_person:
                     viewPageContent.setCurrentItem(3);
                     ALog.e("me");
+                    EventBus.getDefault().post("123");
                     break;
             }
             // 这里必须返回true才能响应点击事件
             return true;
         }
     };
+
+
+    @Subscriber(tag = "123", mode = ThreadMode.MAIN)
+    public void onrece(String tag) {
+        ALog.e("me"+tag);
+        Snackbar.make(getWindow().getDecorView(), "tag = " + tag, 2).show();
+    }
 
 
     @Override
@@ -118,8 +131,7 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
 
 
         this.mRxPermissions = new RxPermissions(this);
-        mPresenter.requestUserInfo(Message.obtain(this,new Object[]{true,mRxPermissions}));
-
+        mPresenter.requestUserInfo(Message.obtain(this, new Object[]{true, mRxPermissions}));
 
 
     }

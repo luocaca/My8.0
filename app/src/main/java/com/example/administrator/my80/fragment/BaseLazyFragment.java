@@ -154,9 +154,13 @@ public abstract class BaseLazyFragment<P extends IPresenter> extends BaseFragmen
     protected abstract int setLayoutId();
 
     /**
-     * 初始化数据
+     * 懒加载时使用 初始化数据
      */
-    protected void initData() {
+    protected abstract void initData() ;
+
+
+    @Override
+    public void initData(Bundle saveInstanceState) {
 
     }
 

@@ -4,7 +4,15 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Message;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.View;
+
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
+import org.simple.eventbus.ThreadMode;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -12,6 +20,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import timber.log.Timber;
 
 /**
  * Created by luocaca on 2017/8/7 0007.
@@ -26,6 +36,8 @@ public final class AppManager {
     public static final int SHOW_SNACKBAR = 1;
     public static final int KILL_ALL = 2;
     public static final int APP_EXIT = 3;
+    public static final int KILL_ACTIVITY = 4;
+
     private Application mApplication;
 
 
@@ -38,6 +50,80 @@ public final class AppManager {
     @Inject
     public AppManager(Application application) {
         this.mApplication = application;
+        EventBus.getDefault().register(this);
+    }
+
+
+    /**
+     * 通过event bus post 事件， 远程遥控执行对应方法
+     */
+    @Subscriber(tag = APPMANAGER_MESSAGE, mode = ThreadMode.MAIN)
+    public void onRecevie(Message message) {
+        switch (message.what) {
+            case START_ACTIVITY:
+                if (message.obj == null) {
+                    Timber.tag(TAG).w("post to manager is obj is null ");
+                    break;
+                }
+                dispatchStart(message);
+                break;
+
+            case SHOW_SNACKBAR:
+                showSnackbar((String) message.obj, message.arg1 == 0 ? false : true);
+                break;
+
+            case KILL_ALL:
+                killAll();
+                break;
+
+            case APP_EXIT:
+                appExit();
+                break;
+
+            case KILL_ACTIVITY:
+                if (message.obj == null) {
+                    Timber.tag(TAG).w("post to manager is obj is null ");
+                    break;
+                }
+
+                break;
+
+            default:
+                Timber.tag(TAG).w("The message.what not match");
+                break;
+
+        }
+    }
+
+
+    private void dispatchStart(Message message) {
+        if (message.obj instanceof Intent) {
+            startActivity((Intent) message.obj);
+        } else if (message.obj instanceof Class) {
+            startActivity((Class) message.obj);
+        }
+    }
+
+
+    private void startActivity(Intent intent) {
+        if (getCurrentActivity() == null) {
+            Timber.tag(TAG).w("mCurrentActivity == null when startActivity(Intent)");
+            //如果没有前台的activity 就使用 new—task 模式启动activity
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mApplication.startActivity(intent);
+            return;
+        }
+
+        getCurrentActivity().startActivity(intent);
+    }
+
+    /**
+     * 让在前台的activity,打开下一个activity
+     *
+     * @param activityClass
+     */
+    private void startActivity(Class activityClass) {
+        startActivity(new Intent(mApplication, activityClass));
     }
 
 
@@ -46,6 +132,12 @@ public final class AppManager {
      */
     public void showSnackbar(String message, boolean isLong) {
 
+        if (getCurrentActivity() == null) {
+            Timber.tag(TAG).w("mCurrentActivity == null when showSnackbar(String,boolean)");
+            return;
+        }
+        View view = getCurrentActivity().getWindow().getDecorView().findViewById(android.R.id.content);
+        Snackbar.make(view, message, isLong ? Snackbar.LENGTH_LONG : Snackbar.LENGTH_SHORT).show();
     }
 
     /**
@@ -78,6 +170,41 @@ public final class AppManager {
             mActivitiesList = new LinkedList<>();
         }
         return mActivitiesList;
+    }
+
+
+
+
+
+    /**
+     * 应用退出使用
+     */
+    public void release() {
+        EventBus.getDefault().unregister(this);
+        mActivitiesList.clear();
+        mActivitiesList = null;
+        mCurrentActivity = null;
+        mApplication = null;
+    }
+
+
+
+
+
+
+
+    /**
+     * 指定的activity 实例 是否存活
+     *
+     * @param activity
+     * @return
+     */
+    public boolean activityInstanceIsLive(Activity activity) {
+        if (mActivitiesList == null) {
+            Log.w(TAG, "mActivityList == null when activityInstanceIsLive: ");
+        }
+        return mActivitiesList.contains(activity);
+
     }
 
 
@@ -157,19 +284,16 @@ public final class AppManager {
     }
 
     /**
-     * 指定的activity 实例 是否存活
-     *
-     * @param activity
-     * @return
+     * 关闭所有activity
      */
-    public boolean activityInstanceIsLive(Activity activity) {
-        if (mActivitiesList == null) {
-            Log.w(TAG, "mActivityList == null when activityInstanceIsLive: ");
+    private void killAll() {
+        Iterator<Activity> iterator = getActivitiesList().iterator();
+        while (iterator.hasNext()) {
+            Activity next = iterator.next();
+            iterator.remove();
+            next.finish();
         }
-        return mActivitiesList.contains(activity);
-
     }
-
 
     /**
      * 指定的activity class 是否存活 （一个activity 可能有多个实例）
@@ -195,31 +319,11 @@ public final class AppManager {
     }
 
 
-    /**
-     * 关闭所有activity
-     */
-    public void killAll() {
-        Iterator<Activity> iterator = getActivitiesList().iterator();
-        while (iterator.hasNext()) {
-            Activity next = iterator.next();
-            iterator.remove();
-            next.finish();
-        }
-//        getActivitiesList()
-//                .stream()
-//                .forEach(activity ->{
-//
-//                    activity.finish();
-//                } );
-
-    }
-
-
-    public void appExit(){
+    private void appExit() {
         try {
             killAll();
-            if (mActivitiesList != null){
-                mActivitiesList = null ;
+            if (mActivitiesList != null) {
+                mActivitiesList = null;
                 ActivityManager activityManager =
                         (ActivityManager) mApplication.getSystemService(Context.ACTIVITY_SERVICE);
                 activityManager.killBackgroundProcesses(mApplication.getPackageName());
@@ -229,8 +333,6 @@ public final class AppManager {
             e.printStackTrace();
         }
     }
-
-
 
 
 }

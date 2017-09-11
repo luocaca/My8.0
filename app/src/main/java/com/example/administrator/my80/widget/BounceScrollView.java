@@ -71,6 +71,10 @@ public class BounceScrollView extends ScrollView {
                 final float preY = y;// 按下时的y坐标
                 float nowY = ev.getY();// 时时y坐标
                 int deltaY = (int) (preY - nowY);// 滑动距离
+
+                if (stateChangeListener != null) {
+                    stateChangeListener.OnMove(deltaY);
+                }
                 D.e("==move==");
                 y = nowY;
                 if (isNeedMove()) {
@@ -96,6 +100,9 @@ public class BounceScrollView extends ScrollView {
                 if (isNeedAnimation()) {
                     animation();
                     isCount = false;
+                }
+                if (stateChangeListener!=null){
+                    stateChangeListener.onMoveEnd();
                 }
                 D.i("==up==");
                 break;
@@ -135,5 +142,17 @@ public class BounceScrollView extends ScrollView {
         return scrollY == 0 || scrollY == offset;
     }
 
+    public OnStateChangeListener stateChangeListener;
+
+    public void setOnStateChangeListener(OnStateChangeListener listener) {
+        this.stateChangeListener = listener;
+    }
+
+    public interface OnStateChangeListener {
+
+        void onMoveEnd();
+
+        void OnMove(int delta);
+    }
 
 }

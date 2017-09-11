@@ -3,6 +3,7 @@
 <com.example.administrator.my80.widget.BounceScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bounce_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -22,8 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="220dp"
             android:background="@drawable/me_bg_no_alf"
-            android:paddingTop="@dimen/top_padding_statu"
-            >
+            android:paddingTop="@dimen/top_padding_statu">
 
             <com.lqr.optionitemview.OptionItemView
                 android:id="@+id/top_bar_option"
@@ -37,12 +37,13 @@
             <!--<include layout="@layout/toolbar_3_0" />-->
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <!--<de.hdodenhof.circleimageview.CircleImageView-->
+            <ImageView
                 android:id="@+id/iv_circle_head"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 android:layout_centerInParent="true"
-                android:src="@drawable/icon_persion_pic" />
+                android:src="@mipmap/test" />
 
 
             <TextView
@@ -62,13 +63,13 @@
                 android:id="@+id/sptv_wd_bjzl"
                 android:layout_width="70dp"
                 android:layout_height="25dp"
-                android:contentDescription="@string/app_name"
-                android:background="@drawable/wd_bjzl_seletor"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_below="@+id/iv_circle_head"
                 android:layout_marginRight="20dp"
-                android:layout_alignParentRight="true"
                 android:layout_marginTop="15dp"
-                android:layout_alignParentEnd="true" />
+                android:background="@drawable/wd_bjzl_seletor"
+                android:contentDescription="@string/app_name" />
 
             <!--<com.coorchice.library.SuperTextView-->
             <!--android:id="@+id/sptv_wd_bjzl"-->

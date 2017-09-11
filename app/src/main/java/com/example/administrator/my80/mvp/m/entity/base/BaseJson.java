@@ -1,4 +1,4 @@
-package com.example.administrator.my80.mvp.m.entity;
+package com.example.administrator.my80.mvp.m.entity.base;
 
 import com.example.administrator.my80.mvp.m.api.Api;
 

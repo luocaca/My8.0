@@ -1,0 +1,28 @@
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    tools:visibility="visible"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/iv_home_left"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="4dp"
+        android:paddingLeft="5dp"
+        android:src="@drawable/home_cj_gg" />
+
+    <!--android:layout_margin="5dp"-->
+    <com.example.administrator.my80.widget.UPMarqueeView
+        android:id="@+id/upview1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@+id/iv_home_left" />
+
+
+</RelativeLayout>

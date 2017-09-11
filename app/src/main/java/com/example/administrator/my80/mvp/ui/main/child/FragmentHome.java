@@ -13,14 +13,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.adapter.OneAdapter;
 import com.example.administrator.my80.fragment.BaseLazyFragment;
-import com.example.administrator.my80.mvp.p.UserInfoPresenter;
+import com.example.administrator.my80.mvp.m.entity.index.Index;
+import com.example.administrator.my80.mvp.p.IndexPresenter;
 import com.example.administrator.my80.util.GlideImageLoader;
 import com.example.art.base.App;
 import com.example.art.mvp.IView;
 import com.example.art.mvp.Message;
+import com.example.art.utils.UiUtils;
 import com.gyf.barlibrary.ImmersionBar;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
@@ -33,21 +36,22 @@ import java.util.List;
 import butterknife.BindView;
 
 /**
- * Created by Administrator on 2017/8/11 0011.
+ * 主页面。请求   首页数据   first one
  */
 
-public class FragmentHome extends BaseLazyFragment implements IView {
+public class FragmentHome extends BaseLazyFragment<IndexPresenter> implements IView {
 
     @Override
     public void initData(Bundle saveInstanceState) {
-
-
+        //初始化的时候自动加载列表
+        mPresenter.requestUserInfo(Message.obtain(this, new Object[]{true, null}));
+        //  mPresenter.requestUsers(Message.obtain(this, new Object[]{true, mRxPermissions}));//打开app时自动加载列表
     }
 
 
     @Override
-    public UserInfoPresenter obtainPresenter() {
-        return new UserInfoPresenter(((App) mActivity.getApplication()).getAppComponent());
+    public IndexPresenter obtainPresenter() {
+        return new IndexPresenter(((App) mActivity.getApplication()).getAppComponent());
     }
 
     @Override
@@ -82,7 +86,7 @@ public class FragmentHome extends BaseLazyFragment implements IView {
 
     @Override
     protected void initData() {
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 1; i <= 5; i++) {
             mItemList.add("item" + i);
         }
         mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
@@ -103,6 +107,12 @@ public class FragmentHome extends BaseLazyFragment implements IView {
         mRv.setAdapter(mOneAdapter);
         addHeaderView();
         addHeaderView1();
+        addHeadViewLine();
+        addHeaderViewMarQuee();
+        addHeadViewLine();
+
+        //------增加多样式布局--
+        addFootView();
 //        addHeadViewLine();
 //        addHeaderViewMarQuee();
 //        mOneAdapter.setPreLoadNumber(1);
@@ -124,6 +134,21 @@ public class FragmentHome extends BaseLazyFragment implements IView {
         }
     }
 
+    private void addFootView() {
+        if (mImages != null && mImages.size() > 0) {
+            headView = LayoutInflater.from(mActivity).inflate(R.layout.item_banner, (ViewGroup) mRv.getParent(), false);
+            Banner banner = (Banner) headView.findViewById(R.id.banner);
+            banner.setImages(mImages)
+                    .setImageLoader(new GlideImageLoader())
+                    .setDelayTime(5000)
+                    .start();
+            mOneAdapter.addFooterView(headView);
+            ViewGroup.LayoutParams bannerParams = banner.getLayoutParams();
+            ViewGroup.LayoutParams titleBarParams = mToolbar.getLayoutParams();
+            bannerHeight = bannerParams.height - titleBarParams.height - ImmersionBar.getStatusBarHeight(getActivity());
+        }
+    }
+
     private void addHeaderView1() {
         headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head, (ViewGroup) mRv.getParent(), false);
         mOneAdapter.addHeaderView(headView);
@@ -131,19 +156,17 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     }
 
     private void addHeaderViewMarQuee() {
-
-        View quee = LayoutInflater.from(mActivity).inflate(R.layout.up_marquee, (ViewGroup) mRv.getParent(), false);
-        mOneAdapter.addHeaderView(quee);
+        headView = LayoutInflater.from(mActivity).inflate(R.layout.up_marquee, (ViewGroup) mRv.getParent(), false);
+        mOneAdapter.addHeaderView(headView);
 
     }
 
 
     private void addHeadViewLine() {
-        View view = new View(mActivity);
-        view.setLayoutParams(new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 50));
-        view.setPadding(0, 0, 0, 200);
-        view.setBackground(new ColorDrawable(Color.GRAY));
-        mOneAdapter.addHeaderView(view);
+        headView = new View(mActivity);
+        headView.setLayoutParams(new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 30));
+        headView.setBackground(new ColorDrawable(UiUtils.getColor(mActivity, R.color.gray_bg_ed)));
+        mOneAdapter.addHeaderView(headView);
     }
 
 
@@ -247,20 +270,20 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     @Override
     protected void initImmersionBar() {
         super.initImmersionBar();
-        mImmersionBar.statusBarColorTransformEnable(false)
-                .navigationBarColor(R.color.colorPrimary)
+        mImmersionBar.statusBarColorTransformEnable(true)
+                .navigationBarColor(R.color.white)
                 .init();
     }
 
 
     @Override
     public void showLoading() {
-
+        ALog.e("showLoading");
     }
 
     @Override
     public void hideLoading() {
-
+        ALog.e("hideLoading");
     }
 
     @Override
@@ -270,6 +293,14 @@ public class FragmentHome extends BaseLazyFragment implements IView {
 
     @Override
     public void handleMessage(Message message) {
+
+
+        Index index = ((Index) message.obj);
+
+        showMessage(index.toString());
+
+        UiUtils.snackbarText(index.toString());
+
 
     }
 }
