@@ -3,7 +3,8 @@
     <string name="beautiful_girl">客服</string>
 
     <string name="feedback">用户反馈</string>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">设置</string>
+    <string name="about">关于</string>
 
     <!-- Strings related to Settings -->
 

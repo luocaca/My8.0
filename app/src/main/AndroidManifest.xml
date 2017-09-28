@@ -45,9 +45,25 @@
             android:name="com.example.administrator.my80.GlobalConfiguration"
             android:value="ConfigModule" />
 
+        <!-- 设置界面 -->
         <activity
             android:name=".mvp.ui.setting.SettingsActivity"
-            android:label="@string/title_activity_settings"/>
+            android:label="@string/title_activity_settings" />
+
+        <!-- android:process=":remote" -->
+        <activity
+            android:name=".mvp.ui.webpage.AboutActivity"
+            android:label="@string/about" />
+        <activity
+            android:name=".mvp.ui.webpage.DispatcherActivity"
+            android:label="@string/dispatcher" />
+        <activity
+            android:name=".mvp.ui.other.AccountActivity"
+            android:label="@string/dispatcher" />
+        <activity
+            android:name=".mvp.ui.other.FeedBackActivity"
+            android:label="@string/feed_back" />
+
     </application>
 
 </manifest>

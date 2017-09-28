@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.blankj.ALog;
 import com.example.administrator.my80.R;
-import com.example.administrator.my80.fragment.BaseLazyFragment;
+import com.example.administrator.my80.base.fragment.BaseLazyFragment;
 import com.example.administrator.my80.mvp.m.entity.common.UserInfo;
 import com.example.administrator.my80.mvp.p.IndexPresenter;
 import com.example.art.base.App;

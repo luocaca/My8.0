@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import com.blankj.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.adapter.OneAdapter;
-import com.example.administrator.my80.fragment.BaseLazyFragment;
+import com.example.administrator.my80.base.fragment.BaseLazyFragment;
 import com.example.administrator.my80.mvp.m.entity.index.Index;
 import com.example.administrator.my80.mvp.p.IndexPresenter;
 import com.example.administrator.my80.util.GlideImageLoader;

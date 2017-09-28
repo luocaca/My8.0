@@ -22,6 +22,7 @@ import com.example.art.base.App;
 import com.example.art.base.BaseActivity;
 import com.example.art.mvp.IView;
 import com.example.art.mvp.Message;
+import com.gyf.barlibrary.ImmersionBar;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import org.simple.eventbus.EventBus;
@@ -33,6 +34,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
+
 public class MainActivity extends BaseActivity<UserInfoPresenter> implements IView {
 
     private RxPermissions mRxPermissions;
@@ -40,6 +42,10 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
 
     @Override
     public int initView(Bundle savedInstanceState) {
+        ImmersionBar.with(this)
+                .statusBarDarkFont(false)
+                .navigationBarColor(R.color.white)
+                .init();
         return R.layout.activity_main2;
     }
 

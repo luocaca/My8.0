@@ -7,74 +7,63 @@
 
     <include layout="@layout/include_toolbar" />
 
-
     <com.allen.library.SuperTextView
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        stv:sSwitchMinWidth="55dp"
-        stv:sLeftTopTextString="推送通知"
-        stv:sLeftViewGravity="left_center"
-        stv:sRightViewType="switchBtn" />
-
-
-    <com.allen.library.SuperTextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        stv:sCenterTextString="已绑定手机："
         stv:sLeftTextSize="14dip"
-        stv:sLeftTextString="清除缓存"
+        stv:sLeftTextString="基础信息"
+        stv:sRightIconHeight="18dp"
         stv:sRightIconRes="@drawable/ic_right_icon"
         stv:sRightIconWidth="6dp"
-        stv:sRightIconHeight="18dp"
+        stv:sRightTextColor="@color/colorAccent"
         stv:sRightTextSize="12dp"
-        stv:sRightTextString="1.75M" />
+        stv:sRightTextString="17074990702" />
 
     <com.allen.library.SuperTextView
-        android:id="@+id/about"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         stv:sLeftTextSize="14dip"
-        stv:sLeftTextString="关于我们"
+        stv:sLeftTextString="登录密码"
+        stv:sRightIconHeight="18dp"
         stv:sRightIconRes="@drawable/ic_right_icon"
         stv:sRightIconWidth="6dp"
-        stv:sRightIconHeight="18dp"
-        stv:sRightTextSize="12dp" />
-
-
-    <com.allen.library.SuperTextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        stv:sLeftTextSize="14dip"
-        stv:sLeftTextString="版本检测"
-        stv:sRightIconRes="@drawable/ic_right_icon"
         stv:sRightTextSize="12dp"
-        stv:sRightTextString="3.0.4fix1"
-        stv:sRightIconWidth="6dp"
-        stv:sRightIconHeight="18dp"
-        />
+        stv:sRightTextString="修改" />
 
     <com.allen.library.SuperTextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         stv:sLeftTextSize="14dip"
-        stv:sLeftTextString="补丁信息"
-        stv:sRightIconRes="@drawable/ic_right_icon"
-        stv:sRightTextSize="12dp"
-        stv:sRightIconWidth="6dp"
+        stv:sLeftTextString="手机绑定"
         stv:sRightIconHeight="18dp"
-        stv:sRightTextString="" />
-
+        stv:sRightIconRes="@drawable/ic_right_icon"
+        stv:sRightIconWidth="6dp"
+        stv:sRightTextSize="12dp"
+        stv:sRightTextString="修改" />
 
     <com.allen.library.SuperTextView
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_margin="20dp"
-        android:layout_marginTop="20dp"
-        stv:sCenterTextColor="@color/white"
-        stv:sCenterTextString="退出当前登录"
-        stv:sShapeCornersRadius="10dp"
-        stv:sShapeSelectorNormalColor="@color/colorPrimaryDark"
-        stv:sShapeSelectorPressedColor="@color/Green"
-        stv:sUseShape="true" />
+        android:layout_height="50dp"
+        stv:sLeftTextSize="14dip"
+        stv:sLeftTextString="个人认证"
+        stv:sRightIconHeight="18dp"
+        stv:sRightIconRes="@drawable/ic_right_icon"
+        stv:sRightIconWidth="6dp"
+        stv:sRightTextSize="12dp"
+        stv:sRightTextString="暂未开放" />
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        stv:sLeftTextSize="14dip"
+        stv:sLeftTextString="单位认证"
+        stv:sRightIconHeight="18dp"
+        stv:sRightIconRes="@drawable/ic_right_icon"
+        stv:sRightIconWidth="6dp"
+        stv:sRightTextSize="12dp"
+        stv:sRightTextString="暂未开放" />
+
 
 </LinearLayout>

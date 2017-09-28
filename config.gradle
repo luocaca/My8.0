@@ -57,7 +57,7 @@ ext {
             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
             "javax.annotation"        : "javax.annotation:jsr250-api:1.0",
             "optionitemview"          : "com.lqr.optionitemview:library:1.0.7",
-            "SuperTextView"           : "com.github.chenBingX:SuperTextView:v1.1",
+            "SuperTextView"           : "com.github.chenBingX:SuperTextView:v1.4",
             "circleimageview"           : "de.hdodenhof:circleimageview:2.1.0",
 
 

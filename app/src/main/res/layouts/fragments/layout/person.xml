@@ -5,7 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bounce_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+
+    >
 
     <LinearLayout
         android:id="@+id/ll_me_content"
@@ -100,7 +103,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" >
 
             <com.coorchice.library.SuperTextView
                 android:id="@+id/sptv_wd_mmgl"
@@ -185,7 +188,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" >
 
             <com.coorchice.library.SuperTextView
                 android:id="@+id/sptv_wd_zhaq"
@@ -209,6 +212,40 @@
                 android:id="@+id/sptv_wd_yhfk"
                 style="@style/home_types"
                 android:text="@string/feedback"
+                app:state_drawable="@mipmap/wd_yhfk" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="20dp">
+
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_ddzy"
+                style="@style/home_types"
+                android:text="@string/dispatcher"
+                android:visibility="visible"
+                app:state_drawable="@mipmap/wd_ddzy" />
+
+            <com.coorchice.library.SuperTextView
+                android:id="@+id/sptv_wd_exit"
+                style="@style/home_types"
+                android:text="退出登录"
+                app:state_drawable="@mipmap/wd_exit" />
+
+
+            <com.coorchice.library.SuperTextView
+                style="@style/home_types"
+                android:text="@string/beautiful_girl"
+                android:visibility="invisible"
+                app:state_drawable="@mipmap/wd_kf" />
+
+            <com.coorchice.library.SuperTextView
+                style="@style/home_types"
+                android:text="@string/app_name"
+                android:visibility="invisible"
                 app:state_drawable="@mipmap/wd_yhfk" />
         </LinearLayout>
 

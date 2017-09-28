@@ -6,8 +6,11 @@ import android.widget.ImageView;
 
 import com.blankj.ALog;
 import com.example.administrator.my80.R;
-import com.example.administrator.my80.fragment.BaseLazyFragment;
+import com.example.administrator.my80.base.fragment.BaseLazyFragment;
+import com.example.administrator.my80.mvp.ui.other.AccountActivity;
+import com.example.administrator.my80.mvp.ui.other.FeedBackActivity;
 import com.example.administrator.my80.mvp.ui.setting.SettingsActivity;
+import com.example.administrator.my80.mvp.ui.webpage.DispatcherActivity;
 import com.example.administrator.my80.widget.BounceScrollView;
 import com.example.administrator.my80.widget.GlideCircleTransform;
 import com.example.art.base.App;
@@ -134,24 +137,43 @@ public class FragmentPerson extends BaseLazyFragment implements View.OnClickList
                 .init();
     }
 
-    @OnClick(R.id.iv_circle_head)
+    @OnClick({
+            R.id.iv_circle_head, R.id.sptv_wd_ddzy, R.id.sptv_wd_zhaq, R.id.sptv_wd_exit, R.id.sptv_wd_yhfk
+    })
     @Override
     public void onClick(View v) {
+
+
+        switch (v.getId()) {
+            case R.id.iv_circle_head:
+                changeHead();
+                break;
+            case R.id.sptv_wd_ddzy:
+                ALog.e(R.string.dispatcher);
+                UiUtils.startActivity(DispatcherActivity.class);
+                break;
+            case R.id.sptv_wd_zhaq:
+                ALog.e(R.string.account);
+                UiUtils.startActivity(AccountActivity.class);
+                break;
+            case R.id.sptv_wd_exit:
+                ALog.e(R.string.exit_2_login);
+                UiUtils.snackbarText(UiUtils.getString(mActivity, R.string.exit_2_login));
+                break;
+            case R.id.sptv_wd_yhfk:
+                ALog.e(R.string.feed_back);
+                UiUtils.snackbarText(UiUtils.getString(mActivity, R.string.feed_back));
+                UiUtils.startActivity(FeedBackActivity.class);
+                break;
+        }
+
+
+    }
+
+    private void changeHead() {
         ALog.e("==点击显示头像==");
-//        mImageLoader.loadImage(mAppComponent.appManager().getCurrentActivity() == null
-//                        ? mAppComponent.application() : mAppComponent.appManager().getCurrentActivity(),
-//                GlideImageConfig
-//                        .builder()
-//                        .placeholder(R.mipmap.test)
-//                        .url("http://img.taopic.com/uploads/allimg/111202/58010-1112020ZJ645.jpg")
-////                        .url("http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png")
-//                        .imageView(iv_circle_head)
-//                        .errorPic(R.mipmap.ic_launcher)
-//                        .transformation(new GlideCircleTransform(mActivity))
-//                        .build());
         String url1 = "http://img.taopic.com/uploads/allimg/111202/58010-1112020ZJ645.jpg";
         String url2 = "http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png";
-
         String url = count++ % 2 == 0 ? url1 : url2;
         mImageLoader.loadImage(mAppComponent.appManager().getCurrentActivity() == null
                         ? mAppComponent.application() : mAppComponent.appManager().getCurrentActivity(),
