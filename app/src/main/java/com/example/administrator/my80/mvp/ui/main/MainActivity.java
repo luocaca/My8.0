@@ -123,11 +123,14 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
     }
 
 
+
+
     @Override
     public void initData(Bundle savedInstanceState) {
         navigation.setOnNavigationItemSelectedListener(b);
         navigation.enableShiftingMode(false);
         navigation.enableItemShiftingMode(false);
+
 
 
         //初始化viewPagers

@@ -165,6 +165,11 @@ public class FragmentPerson extends BaseLazyFragment implements View.OnClickList
                 UiUtils.snackbarText(UiUtils.getString(mActivity, R.string.feed_back));
                 UiUtils.startActivity(FeedBackActivity.class);
                 break;
+            case R.id.sptv_wd_kf:
+                ALog.e(R.string.beautiful_girl);
+                UiUtils.snackbarText(UiUtils.getString(mActivity, R.string.beautiful_girl));
+                UiUtils.startActivity(FeedBackActivity.class);
+                break;
         }
 
 

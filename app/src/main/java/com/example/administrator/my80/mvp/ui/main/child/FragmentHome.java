@@ -44,7 +44,7 @@ public class FragmentHome extends BaseLazyFragment<IndexPresenter> implements IV
     @Override
     public void initData(Bundle saveInstanceState) {
         //初始化的时候自动加载列表
-        mPresenter.requestUserInfo(Message.obtain(this, new Object[]{true, null}));
+        mPresenter.requestIndex(Message.obtain(this, new Object[]{true, null}));
         //  mPresenter.requestUsers(Message.obtain(this, new Object[]{true, mRxPermissions}));//打开app时自动加载列表
     }
 

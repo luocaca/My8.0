@@ -33,10 +33,11 @@ public class IndexPresenter extends BasePresenter<IndexRepository> {
     }
 
 
-    public void requestUserInfo(final Message msg) {
+    /*Rxjava 配合retrofit 请求 网络数据 进行线程变换*/
+    public void requestIndex(final Message msg) {
         msg.what = 0;
 
-        mModel.getIndex(CACHE_SWITCH)
+        mModel.getIndex(CACHE_SWITCH)//retrofit  异步请求网络
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(disposable -> {//在 onSubscribe 的时候 放回此方法  订阅
                     addDispose(disposable);
