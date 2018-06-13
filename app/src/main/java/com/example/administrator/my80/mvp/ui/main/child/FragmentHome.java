@@ -89,10 +89,17 @@ public class FragmentHome extends BaseLazyFragment<IndexPresenter> implements IV
         for (int i = 1; i <= 5; i++) {
             mItemList.add("item" + i);
         }
-        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
-        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
-        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
-        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
+//        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
+//        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
+//        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
+//        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
+
+
+
+        mImages.add("https://ss3.baidu.com/-fo3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=0a9f67bc16950a7b6a3548c43ad0625c/c8ea15ce36d3d539f09733493187e950342ab095.jpg");
+        mImages.add("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4269230302,1228482053&fm=27&gp=0.jpg");
+        mImages.add("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4261164697,911028841&fm=27&gp=0.jpg");
+        mImages.add("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1757478900,994367414&fm=27&gp=0.jpg");
     }
 
 
