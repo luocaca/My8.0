@@ -5,5 +5,8 @@ package com.example.art.mvp;
  */
 
 public interface IModel {
+
+    int PAGE_SIZE = 20;
+
     void onDestroy();
 }

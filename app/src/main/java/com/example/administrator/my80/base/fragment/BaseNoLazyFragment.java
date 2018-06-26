@@ -1,4 +1,4 @@
-package com.example.administrator.my80.fragment;
+package com.example.administrator.my80.base.fragment;
 
 /**
  * Fragment的基类,禁止懒加载功能

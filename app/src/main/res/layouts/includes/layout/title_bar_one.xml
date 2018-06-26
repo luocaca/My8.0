@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
     android:background="@color/colorPrimary"
-    app:contentInsetStart="0dp">
+    app:contentInsetStart="0dp"
+    app:layout_scrollFlags="enterAlways|scroll">
 
     <LinearLayout
         android:layout_width="match_parent"

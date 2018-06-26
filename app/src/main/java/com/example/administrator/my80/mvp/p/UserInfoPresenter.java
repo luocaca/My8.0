@@ -2,9 +2,9 @@ package com.example.administrator.my80.mvp.p;
 
 import android.util.Log;
 
-import com.example.administrator.my80.mvp.m.UserInfoRepository;
-import com.example.administrator.my80.mvp.m.entity.BaseJson;
-import com.example.administrator.my80.mvp.m.entity.UserInfo;
+import com.example.administrator.my80.mvp.m.entity.base.BaseJson;
+import com.example.administrator.my80.mvp.m.entity.common.UserInfo;
+import com.example.administrator.my80.mvp.m.entity.repository.UserInfoRepository;
 import com.example.art.di.component.AppComponent;
 import com.example.art.mvp.BasePresenter;
 import com.example.art.mvp.Message;
@@ -18,6 +18,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
 /**
  * Created by Administrator on 2017/8/31 0031.
@@ -57,7 +58,7 @@ public class UserInfoPresenter extends BasePresenter<UserInfoRepository> {
 
         mModel.getUserInfo("3378ca2d-b09b-411b-a3d0-28766e314685", false)//true 去除缓存，
                 .subscribeOn(Schedulers.io())
-//                .retryWhen(new RetryWithDelay(3, 2))//遇到错误时重试， 第一个为重试几次，第二个 间隔
+                .retryWhen(new RetryWithDelay(3, 2))//遇到错误时重试， 第一个为重试几次，第二个 间隔
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(@NonNull Disposable disposable) throws Exception {

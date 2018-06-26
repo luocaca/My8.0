@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Message;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import org.simple.eventbus.EventBus;
 
 import java.security.MessageDigest;
+import java.util.Random;
 
 import static com.example.art.integration.AppManager.APPMANAGER_MESSAGE;
 import static com.example.art.integration.AppManager.APP_EXIT;
@@ -402,6 +404,17 @@ public class UiUtils {
         Message message = new Message();
         message.what = APP_EXIT;
         EventBus.getDefault().post(message, APPMANAGER_MESSAGE);
+    }
+
+    /**
+     * 随机颜色
+     */
+    public static int randomColor() {
+        Random random = new Random();
+        int red = random.nextInt(150) + 50;//50-199
+        int green = random.nextInt(150) + 50;//50-199
+        int blue = random.nextInt(150) + 50;//50-199
+        return Color.rgb(red, green, blue);
     }
 
 }

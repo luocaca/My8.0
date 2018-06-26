@@ -1,4 +1,4 @@
-package com.example.administrator.my80.fragment;
+package com.example.administrator.my80.base.fragment;
 
 import android.app.Activity;
 import android.content.Context;

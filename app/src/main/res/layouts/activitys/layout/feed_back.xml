@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:stv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.my80.mvp.ui.other.FeedBackActivity">
+
+    <include layout="@layout/include_toolbar" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_password"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_margin="12dp">
+
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:gravity="top|start"
+            android:hint="@string/feed_back_desc_text"
+            android:textColorHint="@android:color/holo_red_light"
+            android:padding="5dp"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        stv:sCenterTextColor="@color/white"
+        stv:sCenterTextString="确认反馈"
+        stv:sShapeCornersRadius="10dp"
+        stv:sShapeSelectorNormalColor="@color/colorPrimaryDark"
+        stv:sShapeSelectorPressedColor="@color/Green"
+        stv:sUseShape="true" />
+
+
+</LinearLayout>

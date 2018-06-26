@@ -18,7 +18,8 @@ ext {
             androidSupportSdkVersion  : "25.3.1",
             constraintLayoutSdkVersion: "1.0.2",
             junitSdkVersion           : "4.12",
-            butterknifeSdkVersion     : "8.7.0",
+//            butterknifeSdkVersion     : "8.7.0",
+            butterknifeSdkVersion     : "8.8.1",
             rxlifecycle2SdkVersion    : "2.1.0",
             retrofitSdkVersion        : "2.3.0",
             dagger2SdkVersion         : "2.11",
@@ -56,8 +57,8 @@ ext {
             "butterknife-compiler"    : "com.jakewharton:butterknife-compiler:${version["butterknifeSdkVersion"]}",
             "javax.annotation"        : "javax.annotation:jsr250-api:1.0",
             "optionitemview"          : "com.lqr.optionitemview:library:1.0.7",
-            "SuperTextView"           : "com.github.chenBingX:SuperTextView:v1.1",
-            "circleimageview"           : "de.hdodenhof:circleimageview:2.0.0",
+            "SuperTextView"           : "com.github.chenBingX:SuperTextView:v1.4",
+            "circleimageview"           : "de.hdodenhof:circleimageview:2.1.0",
 
 
             //rx1
