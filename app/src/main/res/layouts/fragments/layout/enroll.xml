@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.example.administrator.my80.widget.BounceScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+
+
+    <TextView
+        android:textIsSelectable="true"
+        android:id="@+id/tcp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="6dp"
+        android:text="@string/user_tcpip"
+        android:layout_marginTop="@dimen/top_padding_statu"
+        />
+
+</com.example.administrator.my80.widget.BounceScrollView>

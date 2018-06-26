@@ -1,11 +1,10 @@
 package com.example.administrator.my80.mvp.ui.main.child;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v7.widget.Toolbar;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
+import com.example.administrator.my80.BuildConfig;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.fragment.BaseLazyFragment;
 import com.example.administrator.my80.mvp.m.entity.UserInfo;
@@ -19,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.alien95.resthttp.request.RestHttp;
+import cn.lemon.multi.MultiView;
 
 /**
  * Created by Administrator on 2017/8/11 0011.
@@ -27,20 +28,16 @@ import butterknife.BindView;
 public class FragmentShop extends BaseLazyFragment {
 
     private List<String> mData = new ArrayList<>();
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+
     @BindView(R.id.recyclerView)
     CoreRecyclerView coreRecyclerView;
 
-    @BindView(R.id.tabLayout)
-    TabLayout tabLayout;
 
 
     @Override
     public void lazyLoadAftFragmentViewCreated() {
         super.lazyLoadAftFragmentViewCreated();
         ImmersionBar.with(this)
-                .statusBarView(R.id.view)
                 .init();
     }
 
@@ -48,6 +45,10 @@ public class FragmentShop extends BaseLazyFragment {
 
     protected void initView() {
 
+        RestHttp.initialize(mActivity);
+        if(BuildConfig.DEBUG){
+            RestHttp.setDebug(true,"network");
+        }
 
     }
 
@@ -59,14 +60,34 @@ public class FragmentShop extends BaseLazyFragment {
 
     @Override
     public void initData(Bundle saveInstanceState) {
-        TabLayout.Tab tab1 = tabLayout.newTab().setText("筛选");
-        tabLayout.addTab(tab1);
-        TabLayout.Tab tab2 = tabLayout.newTab().setText("排序");
-        tabLayout.addTab(tab2);
 
-        coreRecyclerView.init(new BaseQuickAdapter<UserInfo, BaseViewHolder>(R.layout.item_res) {
+
+        coreRecyclerView.init(new BaseQuickAdapter<UserInfo, BaseViewHolder>(R.layout.item_mult_view) {
             @Override
             protected void convert(BaseViewHolder helper, UserInfo item) {
+                MultiView  multiView = (MultiView) helper.getView(R.id.multi_view);
+                multiView.setLayoutParams(new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                List<String> data = new ArrayList<String>();
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+                data.add( "http://i02.pictn.sogoucdn.com/73a90748d5e19769");
+
+                multiView.setImages(data);
+
+
+
 
             }
         });
@@ -96,7 +117,7 @@ public class FragmentShop extends BaseLazyFragment {
     protected void initImmersionBar() {
         super.initImmersionBar();
         mImmersionBar.statusBarColorTransformEnable(false)
-                .navigationBarColor(R.color.colorPrimary)
+                .navigationBarColor(R.color.white)
                 .init();
     }
 }

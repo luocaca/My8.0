@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg_ed"
+    android:orientation="vertical">
+
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:sLeftIconHeight="19dp"
+        app:sLeftIconRes="@drawable/time"
+        app:sLeftIconWidth="26dp"
+        app:sLeftTextString="线路特色"
+
+        />
+
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:sLeftIconHeight="39dp"
+        app:sLeftIconRes="@drawable/location_marker"
+        app:sLeftIconWidth="26dp"
+        app:sLeftTextString="上车地点：请选择"
+        app:sRightIconHeight="16dp"
+        app:sRightIconRes="@drawable/rightarrow"
+        app:sRightIconWidth="16dp" />
+
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:sLeftIconHeight="26dp"
+        app:sLeftIconRes="@drawable/time"
+        app:sLeftIconWidth="26dp"
+        app:sLeftTextString="线路特色"
+        app:sRightIconHeight="16dp"
+        app:sRightIconWidth="16dp" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignContent="flex_start"
+        app:alignItems="flex_start"
+        app:flexWrap="wrap"
+        app:showDivider="beginning|middle">
+
+        <TextView
+            style="@style/FlexItem"
+            android:text="1" />
+
+        <TextView
+            style="@style/FlexItem"
+            android:text="2" />
+
+        <TextView
+            style="@style/FlexItem"
+            android:text="3" />
+
+        <TextView
+            style="@style/FlexItem"
+            android:text="4" />
+
+        <TextView
+            style="@style/FlexItem"
+            android:text="5" />
+
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:sCenterBottomTextColor="@color/colorAccent"
+        app:sCenterTopTextString=" "
+        app:sCenterViewGravity="left_center"
+        app:sLeftBottomTextString="线路特色：休闲  徒步 摄影  海岛"
+        app:sLeftIconRes="@drawable/location_marker"
+        app:sLeftViewGravity="left_center" />
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:sCenterBottomTextColor="@color/colorAccent"
+        app:sCenterTopTextString=" "
+        app:sCenterViewGravity="left_center"
+        app:sLeftBottomTextString="风景指数：※※※※※"
+        app:sLeftIconRes="@drawable/location_marker"
+        app:sLeftViewGravity="left_center" />
+
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:sCenterBottomTextColor="@color/colorAccent"
+        app:sCenterTopTextString=" "
+        app:sCenterViewGravity="left_center"
+        app:sLeftBottomTextString="活动领队：二傻么么哒"
+        app:sLeftIconRes="@drawable/location_marker"
+        app:sLeftViewGravity="left_center" />
+
+
+    <com.allen.library.SuperTextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:sCenterBottomTextColor="@color/colorAccent"
+        app:sCenterTopTextString=" "
+        app:sCenterViewGravity="left_center"
+        app:sLeftBottomTextString="报名列表：1/45"
+        app:sLeftIconRes="@drawable/location_marker"
+        app:sLeftViewGravity="left_center" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/hdyh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="活动优惠"
+            android:textColor="@color/tip_color"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/zeng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hdyh"
+            android:layout_marginRight="4dp"
+            android:background="@color/tip_color"
+            android:padding="2dp"
+            android:text="赠"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hdyh"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/zeng"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="报名可获100积分没人" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="微信分享可获1000积分，达成交易还可获2000积分/人，上不封顶" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

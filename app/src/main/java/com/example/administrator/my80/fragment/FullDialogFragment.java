@@ -34,7 +34,7 @@ public class FullDialogFragment extends DialogFragment {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.getWindow().setWindowAnimations(R.style.RightDialog);
         mImmersionBar = ImmersionBar.with(getActivity(), dialog, "FullDialogFragment");
-        mImmersionBar.statusBarDarkFont(true).navigationBarColor(R.color.colorPrimary).keyboardEnable(true).init();
+        mImmersionBar.statusBarDarkFont(true).navigationBarColor(R.color.white).keyboardEnable(true).init();
         return dialog;
     }
 

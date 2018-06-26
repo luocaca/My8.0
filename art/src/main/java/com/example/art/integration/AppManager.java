@@ -4,7 +4,14 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.os.Message;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.View;
+
+import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
+import org.simple.eventbus.ThreadMode;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -12,6 +19,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import timber.log.Timber;
 
 /**
  * Created by luocaca on 2017/8/7 0007.
@@ -38,14 +47,32 @@ public final class AppManager {
     @Inject
     public AppManager(Application application) {
         this.mApplication = application;
+        EventBus.getDefault().register(this);
     }
 
+
+    @Subscriber(tag = APPMANAGER_MESSAGE, mode = ThreadMode.MAIN)
+    public void onReceive(Message message) {
+        showSnackbar(message.toString(),true);
+        Log.e(TAG, "onReceive: android.os.Message"+message.toString());
+    }
+
+    @Subscriber(tag = APPMANAGER_MESSAGE, mode = ThreadMode.MAIN)
+    public void onReceive(com.example.art.mvp.Message message) {
+        showSnackbar(message.toString(),true);
+        Log.e(TAG, "onReceive: com.example.art.mvp.Message"+message.toString());
+    }
 
     /**
      * 封装使用 snackbar 显示内容
      */
     public void showSnackbar(String message, boolean isLong) {
-
+        if (getCurrentActivity() == null) {
+            Timber.tag(TAG).w("mCurrentActivity == null when showSnackbar(String,boolean)");
+            return;
+        }
+        View view = getCurrentActivity().getWindow().getDecorView().findViewById(android.R.id.content);
+        Snackbar.make(view, message, isLong ? Snackbar.LENGTH_LONG : Snackbar.LENGTH_SHORT).show();
     }
 
     /**
@@ -215,11 +242,11 @@ public final class AppManager {
     }
 
 
-    public void appExit(){
+    public void appExit() {
         try {
             killAll();
-            if (mActivitiesList != null){
-                mActivitiesList = null ;
+            if (mActivitiesList != null) {
+                mActivitiesList = null;
                 ActivityManager activityManager =
                         (ActivityManager) mApplication.getSystemService(Context.ACTIVITY_SERVICE);
                 activityManager.killBackgroundProcesses(mApplication.getPackageName());
@@ -229,8 +256,6 @@ public final class AppManager {
             e.printStackTrace();
         }
     }
-
-
 
 
 }

@@ -1,14 +1,11 @@
 package com.example.administrator.my80.mvp.ui.main.child;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.ColorUtils;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +13,13 @@ import android.view.ViewGroup;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.adapter.OneAdapter;
 import com.example.administrator.my80.fragment.BaseLazyFragment;
+import com.example.administrator.my80.mvp.m.entity.UserInfo;
 import com.example.administrator.my80.mvp.p.UserInfoPresenter;
 import com.example.administrator.my80.util.GlideImageLoader;
 import com.example.art.base.App;
 import com.example.art.mvp.IView;
 import com.example.art.mvp.Message;
-import com.gyf.barlibrary.ImmersionBar;
+import com.example.art.utils.UiUtils;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 import com.luoxx.xxlib.weidet.BaseQuickAdapter;
@@ -31,15 +29,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
- * Created by Administrator on 2017/8/11 0011.
+ * 特殊对象
+ 为了提供更好的服务，BmobSDK中提供了BmobUser、BmobInstallation、BmobRole三个特殊的BmobObject对象来完成不同的功能，在这里我们统一称为特殊对象。
+
+ BmobUser对象主要是针对应用中的用户功能而提供的，它对应着web端的User表，使用BmobUser对象可以很方便的在应用中实现用户的注册、
+ 登录、邮箱验证等功能，具体的使用方法可查看文档的用户管理部分。
+
+ BmobInstallation对象主要用于应用的安装设备管理中，它对应着web端的Installation表，
+ 任何安装了你应用的设备都会在此表中产生一条数据标示该设备。结合Bmob提供的推送功能，
+ 还可以实现将自定义的消息推送给不同的设备终端，具体的使用方法可查看消息推送开发文档。
+
+ BmobRole对象主要用于角色管理，对应用于Web端的Role表，具体的使用方法可查看文档的ACL和角色部分。
  */
 
 public class FragmentHome extends BaseLazyFragment implements IView {
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
     public void initData(Bundle saveInstanceState) {
+
+
+        UiUtils.snackbarText("上传 bmob");
+        UserInfo p2 = new UserInfo();
+        p2.displayName = "大傻";
+        p2.address = "北京海淀";
+        p2.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId, BmobException e) {
+                if (e == null) {
+                    UiUtils.snackbarText("添加数据成功，返回objectId为：" + objectId);
+
+                    Log.i(TAG, "done:添加数据成功 "+objectId);
+                } else {
+                    UiUtils.snackbarText("创建数据失败：" + e.getMessage());
+                    Log.i(TAG, "done: 创建数据失败"+objectId+ e.getMessage());
+                }
+            }
+        });
+
+
 
 
     }
@@ -56,9 +92,8 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     }
 
 
-
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    //    @BindView(R.id.toolbar)
+//    Toolbar mToolbar;
     @BindView(R.id.rv)
     RecyclerView mRv;
     @BindView(R.id.refreshLayout)
@@ -70,14 +105,9 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     private View headView;
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
     public void lazyLoadAftFragmentViewCreated() {
         super.lazyLoadAftFragmentViewCreated();
-        ImmersionBar.setTitleBar(getActivity(), mToolbar);
+//        ImmersionBar.setTitleBar(getActivity(), mToolbar);
     }
 
     @Override
@@ -88,14 +118,13 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     @Override
     protected void initData() {
         for (int i = 1; i <= 20; i++) {
-            mItemList.add("item" + i);
+            mItemList.add("http://img.qumofang.com/1068_20180514_route_FqQyRKvERafp7OMdchgxu75hWxTg.jpg?imageView2/1/w/640/h/268/q/80");
         }
-        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
-        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
-        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
-        mImages.add("http://desk.zol.com.cn/showpic/1024x768_63850_14.html");
+        mImages.add("http://img.qumofang.com/1068_20180514_route_FqQyRKvERafp7OMdchgxu75hWxTg.jpg?imageView2/1/w/640/h/268/q/80");
+        mImages.add("http://img.qumofang.com/1068_20180514_route_llm-MepHD8u9r1MLhSc78PhoCPyn.jpg?imageView2/1/w/640/h/268/q/80");
+        mImages.add("http://img.qumofang.com/1068_20180514_route_lqSDWDMeC0F7D95DTCEO3kgAx0kV.jpg?imageView2/1/w/640/h/268/q/80");
+        mImages.add("http://img.qumofang.com/1068_20180514_route_FlwPVhbNsuJnb5j2UsveLEpi1bow.jpg?imageView2/1/w/640/h/268/q/80");
     }
-
 
 
     @Override
@@ -104,11 +133,12 @@ public class FragmentHome extends BaseLazyFragment implements IView {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false);
         mRv.setLayoutManager(linearLayoutManager);
-        mOneAdapter = new OneAdapter();
+        mOneAdapter = new OneAdapter(mActivity);
         mOneAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mRv.setAdapter(mOneAdapter);
         addHeaderView();
         addHeaderView1();
+        addHeaderView2();
 //        mOneAdapter.setPreLoadNumber(1);
         mOneAdapter.setNewData(mItemList);
     }
@@ -123,50 +153,29 @@ public class FragmentHome extends BaseLazyFragment implements IView {
                     .start();
             mOneAdapter.addHeaderView(headView);
             ViewGroup.LayoutParams bannerParams = banner.getLayoutParams();
-            ViewGroup.LayoutParams titleBarParams = mToolbar.getLayoutParams();
-            bannerHeight = bannerParams.height - titleBarParams.height - ImmersionBar.getStatusBarHeight(getActivity());
+//            ViewGroup.LayoutParams titleBarParams = mToolbar.getLayoutParams();
+//            bannerHeight = bannerParams.height - titleBarParams.height - ImmersionBar.getStatusBarHeight(getActivity());
         }
     }
 
 
     private void addHeaderView1() {
 
-            headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head, (ViewGroup) mRv.getParent(), false);
-            mOneAdapter.addHeaderView(headView);
+        headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head, (ViewGroup) mRv.getParent(), false);
+        mOneAdapter.addHeaderView(headView);
+
+    }
+
+    private void addHeaderView2() {
+
+        headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head_2, (ViewGroup) mRv.getParent(), false);
+        mOneAdapter.addHeaderView(headView);
 
     }
 
     @Override
     protected void setListener() {
-        mRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            private int totalDy = 0;
 
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                totalDy += dy;
-                if (totalDy <= bannerHeight) {
-                    float alpha = (float) totalDy / bannerHeight;
-                    mToolbar.setBackgroundColor(ColorUtils.blendARGB(Color.TRANSPARENT
-                            , ContextCompat.getColor(mActivity, R.color.colorPrimary), alpha));
-                } else {
-                    mToolbar.setBackgroundColor(ColorUtils.blendARGB(Color.TRANSPARENT
-                            , ContextCompat.getColor(mActivity, R.color.colorPrimary), 1));
-                }
-                //在Fragment里使用的时候，并且加载Fragment的Activity配置了android:configChanges="orientation|keyboardHidden|screenSize"属性时，
-                //不建议使用ImmersionBar里的addViewSupportTransformColor()方法实现标题滑动渐变
-                //原因是会导致影响其他页面的沉浸式效果，除非每个页面的沉浸式参数都一样
-//                mImmersionBar.addViewSupportTransformColor(mToolbar, R.color.colorPrimary);
-//                if (totalDy <= bannerHeight) {
-//                    float alpha = (float) totalDy / bannerHeight;
-//                    mImmersionBar.statusBarAlpha(alpha)
-//                            .init();
-//                } else {
-//                    mImmersionBar.statusBarAlpha(1.0f)
-//                            .init();
-//                }
-            }
-        });
 //        mOneAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
 //            @Override
 //            public void onLoadMoreRequested() {
@@ -192,7 +201,7 @@ public class FragmentHome extends BaseLazyFragment implements IView {
                         mItemList.addAll(newData());
                         mOneAdapter.setNewData(mItemList);
                         refreshLayout.finishRefreshing();
-                        mToolbar.setVisibility(View.VISIBLE);
+
                         mImmersionBar.statusBarDarkFont(false).init();
                     }
                 }, 2000);
@@ -200,19 +209,13 @@ public class FragmentHome extends BaseLazyFragment implements IView {
 
             @Override
             public void onPullingDown(TwinklingRefreshLayout refreshLayout, float fraction) {
-                mToolbar.setVisibility(View.GONE);
+
                 mImmersionBar.statusBarDarkFont(true).init();
             }
 
             @Override
             public void onPullDownReleasing(TwinklingRefreshLayout refreshLayout, float fraction) {
-                if (Math.abs(fraction - 1.0f) > 0) {
-                    mToolbar.setVisibility(View.VISIBLE);
-                    mImmersionBar.statusBarDarkFont(false).init();
-                } else {
-                    mToolbar.setVisibility(View.GONE);
-                    mImmersionBar.statusBarDarkFont(true).init();
-                }
+
             }
         });
     }
@@ -220,7 +223,7 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     private List<String> addData() {
         List<String> data = new ArrayList<>();
         for (int i = mItemList.size() + 1; i <= mItemList.size() + 20; i++) {
-            data.add("item" + i);
+            data.add("http://www.ecl.com.cn/Upload/201308041400537Qr6Yy.jpg");
         }
         return data;
     }
@@ -228,7 +231,7 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     private List<String> newData() {
         List<String> data = new ArrayList<>();
         for (int i = 1; i <= 20; i++) {
-            data.add("item" + i);
+            data.add("http://www.ecl.com.cn/Upload/201308041400537Qr6Yy.jpg");
         }
         return data;
     }
@@ -237,7 +240,7 @@ public class FragmentHome extends BaseLazyFragment implements IView {
     protected void initImmersionBar() {
         super.initImmersionBar();
         mImmersionBar.statusBarColorTransformEnable(false)
-                .navigationBarColor(R.color.colorPrimary)
+                .navigationBarColor(R.color.white)
                 .init();
     }
 

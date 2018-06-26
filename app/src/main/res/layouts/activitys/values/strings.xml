@@ -3,4 +3,5 @@
     <string name="beautiful_girl">客服</string>
 
     <string name="feedback">用户反馈</string>
+  <string name="user_tcpip"> user_tcp</string>
 </resources>

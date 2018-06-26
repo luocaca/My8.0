@@ -5,10 +5,11 @@
     <string name="title_activity_main2">MainActivity2</string>
 
 
-
     <string name="home">首页</string>
     <string name="navigation_home">首页</string>
     <string name="navigation_shop">商城</string>
     <string name="navigation_favor">收藏夹</string>
+    <string name="navigation_tips">户外知识</string>
     <string name="navigation_person">我的</string>
+    <string name="navigation_enroll">服务协议</string>
 </resources>

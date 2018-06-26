@@ -14,11 +14,11 @@
     <item
         android:id="@+id/navigation_favorite"
         android:icon="@drawable/ic_favorite_black_24dp"
-        android:title="@string/navigation_favor" />
+        android:title="@string/navigation_tips" />
     <item
         android:id="@+id/navigation_person"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="@string/navigation_person" />
+        android:title="@string/navigation_enroll" />
 
 
 

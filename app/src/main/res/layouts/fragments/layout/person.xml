@@ -97,74 +97,6 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_mmgl"
-                style="@style/home_types"
-                android:text="苗木管理"
-                app:state_drawable="@mipmap/wd_mmgl" />
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_bjgl"
-                style="@style/home_types"
-                android:text="我的报价"
-                app:state_drawable="@mipmap/wd_bjgl" />
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_wddp"
-                style="@style/home_types"
-                android:text="我的店铺"
-                app:state_drawable="@mipmap/wd_wddp" />
-
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_dpsz"
-                style="@style/home_types"
-                android:text="店铺设置"
-                app:state_drawable="@mipmap/wd_dpsz" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white">
-
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_mydz"
-                style="@style/home_types"
-                android:text="苗源地址"
-                app:state_drawable="@mipmap/wd_mydz" />
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_wdxm"
-                style="@style/home_types"
-                android:text="我的项目"
-                android:visibility="visible"
-                app:state_drawable="@mipmap/wd_wdxm" />
-
-            <com.coorchice.library.SuperTextView
-                style="@style/home_types"
-                android:text="发货任务"
-                android:visibility="invisible"
-                app:state_drawable="@mipmap/wd_fhrw"
-                tools:visibility="visible" />
-
-
-            <com.coorchice.library.SuperTextView
-                style="@style/home_types"
-                android:text="合伙人"
-                android:visibility="invisible"
-                app:state_drawable="@mipmap/wd_hhr"
-                tools:visibility="visible" />
-
-        </LinearLayout>
-
 
         <View
 
@@ -181,35 +113,6 @@
 
         <View style="@style/View_line_gray_1dp" />
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_zhaq"
-                style="@style/home_types"
-                android:text="账户安全"
-                app:state_drawable="@mipmap/wd_zhaq" />
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_fxapp"
-                style="@style/home_types"
-                android:text="分享APP"
-                app:state_drawable="@mipmap/wd_fxapp" />
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_kf"
-                style="@style/home_types"
-                android:text="@string/beautiful_girl"
-                app:state_drawable="@mipmap/wd_kf" />
-
-            <com.coorchice.library.SuperTextView
-                android:id="@+id/sptv_wd_yhfk"
-                style="@style/home_types"
-                android:text="@string/feedback"
-                app:state_drawable="@mipmap/wd_yhfk" />
-        </LinearLayout>
 
 
     </LinearLayout>

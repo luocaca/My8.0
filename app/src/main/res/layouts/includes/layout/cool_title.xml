@@ -4,25 +4,25 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/white"
     app:contentInsetStart="0dp"
-    app:layout_scrollFlags="scroll|enterAlways"
-   >
+    app:layout_scrollFlags="scroll|enterAlways">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        android:background="@drawable/shape_cool"
-        android:paddingTop="@dimen/appbar_padding_top"
+        android:background="@color/white"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/appbar_padding_top">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:src="@mipmap/ic_widgets_white" />
+            android:src="@drawable/search_icon"
+            android:tint="@color/gray_bg_ed" />
 
         <EditText
             android:layout_width="0dp"
@@ -30,22 +30,19 @@
             android:layout_weight="1"
             android:background="@null"
             android:cursorVisible="false"
-            android:hint="王者荣耀"
+            android:hint="搜索"
             android:paddingStart="10dp"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
+            android:textColor="@color/gray_bg_ed"
+            android:textColorHint="@color/gray_bg_ed"
             android:textSize="14sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:src="@mipmap/ic_notifications_white" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:src="@mipmap/ic_add_white_24dp" />
+            android:src="@mipmap/ic_add_white_24dp"
+
+            android:tint="@color/gray_bg_ed" />
     </LinearLayout>
 </android.support.v7.widget.Toolbar>
