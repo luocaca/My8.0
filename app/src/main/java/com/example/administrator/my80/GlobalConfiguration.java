@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.administrator.my80.app.AttachApp;
 import com.example.administrator.my80.i.OnLazyLoadListener;
 import com.example.administrator.my80.mvp.m.api.Api;
 import com.example.administrator.my80.util.StatetBarUtil;
@@ -197,6 +198,9 @@ public final class GlobalConfiguration implements ConfigModule {
             public void attachBaseContext(Context base) {
                 //  MultiDex.install(base);  //这里比 onCreate 先执行,常用于 MultiDex 初始化,插件化框架的初始化
 
+
+
+
             }
 
             @Override
@@ -211,6 +215,8 @@ public final class GlobalConfiguration implements ConfigModule {
                 //leakCanary 内存泄漏检查
                 App app = (App) application;
 
+
+                new AttachApp(application);
 //                app.getAppComponent().extras()
 //                        .put(
 //                                RefWatcher.class.getName(),

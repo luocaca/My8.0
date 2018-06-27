@@ -20,5 +20,5 @@
 
     </com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>
 
-    <include layout="@layout/title_bar_one" />
+    <!--<include layout="@layout/title_bar_one" />-->
 </FrameLayout>

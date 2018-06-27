@@ -7,8 +7,5 @@
 
     <color name="gray_bg">#ededed</color>
     <color name="gray_bg_ed">#ededed</color>
-
-
-
-
+    <color name="tip_color">#f4816a</color>
 </resources>

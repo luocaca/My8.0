@@ -8,10 +8,21 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+
+    <!--允许联网 -->
+    <!--获取GSM（2g）、WCDMA（联通3g）等网络状态的信息  -->
+    <!--获取wifi网络状态的信息 -->
+    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--获取sd卡写的权限，用于文件上传和下载-->
+    <!--允许读取手机状态 用于创建BmobInstallation-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+
+
     <application
-        android:name=".app.MyApplication"
+        android:name="com.example.art.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,6 +38,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="cn.lemon.multi.ui.ViewImageActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
+
+
 
         <meta-data
             android:name="design_width"
@@ -45,24 +63,10 @@
             android:name="com.example.administrator.my80.GlobalConfiguration"
             android:value="ConfigModule" />
 
-        <!-- 设置界面 -->
-        <activity
-            android:name=".mvp.ui.setting.SettingsActivity"
-            android:label="@string/title_activity_settings" />
 
-        <!-- android:process=":remote" -->
-        <activity
-            android:name=".mvp.ui.webpage.AboutActivity"
-            android:label="@string/about" />
-        <activity
-            android:name=".mvp.ui.webpage.DispatcherActivity"
-            android:label="@string/dispatcher" />
-        <activity
-            android:name=".mvp.ui.other.AccountActivity"
-            android:label="@string/dispatcher" />
-        <activity
-            android:name=".mvp.ui.other.FeedBackActivity"
-            android:label="@string/feed_back" />
+
+
+
 
     </application>
 

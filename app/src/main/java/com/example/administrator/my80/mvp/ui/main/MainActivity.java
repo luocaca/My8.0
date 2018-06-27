@@ -3,37 +3,29 @@ package com.example.administrator.my80.mvp.ui.main;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.MenuItem;
 
-import com.blankj.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.mvp.p.UserInfoPresenter;
-import com.example.administrator.my80.mvp.ui.main.child.FragmentFavor;
+import com.example.administrator.my80.mvp.ui.main.child.FragmentEnroll;
 import com.example.administrator.my80.mvp.ui.main.child.FragmentHome;
-import com.example.administrator.my80.mvp.ui.main.child.FragmentPerson;
 import com.example.administrator.my80.mvp.ui.main.child.FragmentShop;
+import com.example.administrator.my80.mvp.ui.main.child.FragmentTips;
 import com.example.administrator.my80.widget.BottomNavigationViewEx;
 import com.example.art.base.AdapterViewPager;
 import com.example.art.base.App;
 import com.example.art.base.BaseActivity;
 import com.example.art.mvp.IView;
 import com.example.art.mvp.Message;
-import com.gyf.barlibrary.ImmersionBar;
+import com.example.art.utils.UiUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-
-import org.simple.eventbus.EventBus;
-import org.simple.eventbus.Subscriber;
-import org.simple.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-
 
 public class MainActivity extends BaseActivity<UserInfoPresenter> implements IView {
 
@@ -42,10 +34,6 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
 
     @Override
     public int initView(Bundle savedInstanceState) {
-        ImmersionBar.with(this)
-                .statusBarDarkFont(false)
-                .navigationBarColor(R.color.white)
-                .init();
         return R.layout.activity_main2;
     }
 
@@ -59,17 +47,16 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
         {
             add(new FragmentHome());
             add(new FragmentShop());
-            add(new FragmentFavor());
-            add(new FragmentPerson());
-//            add(new FragmentPerson());
-//            add(new FragmentPerson());
-//            add(new FragmentPerson());
+            add(new FragmentTips());
+            add(new FragmentEnroll());
         }
     };
 
 
+
+
     // 为ViewPager添加页面改变事件
-    ViewPager.OnPageChangeListener vl = new ViewPager.OnPageChangeListener() {
+      ViewPager.OnPageChangeListener vl = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -88,6 +75,7 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
     };
 
 
+
     // 为bnv设置选择监听事件
     BottomNavigationView.OnNavigationItemSelectedListener b = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -102,27 +90,16 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
                     break;
                 case R.id.navigation_favorite:
                     viewPageContent.setCurrentItem(2);
-                    Log.e(TAG, "onNavigationItemSelected: onCreate: (MainActivity.java:98)");
                     break;
                 case R.id.navigation_person:
                     viewPageContent.setCurrentItem(3);
-                    ALog.e("me");
-                    EventBus.getDefault().post("123");
+                    UiUtils.snackbarText("hellow world");
                     break;
             }
             // 这里必须返回true才能响应点击事件
             return true;
         }
     };
-
-
-    @Subscriber(tag = "123", mode = ThreadMode.MAIN)
-    public void onrece(String tag) {
-        ALog.e("me"+tag);
-        Snackbar.make(getWindow().getDecorView(), "tag = " + tag, 2).show();
-    }
-
-
 
 
     @Override
@@ -132,7 +109,6 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
         navigation.enableItemShiftingMode(false);
 
 
-
         //初始化viewPagers
         AdapterViewPager viewPagerAdapter = new AdapterViewPager(getSupportFragmentManager(), fragments);
         viewPageContent.setAdapter(viewPagerAdapter);
@@ -140,7 +116,8 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
 
 
         this.mRxPermissions = new RxPermissions(this);
-        mPresenter.requestUserInfo(Message.obtain(this, new Object[]{true, mRxPermissions}));
+        mPresenter.requestUserInfo(Message.obtain(this,new Object[]{true,mRxPermissions}));
+
 
 
     }
@@ -169,6 +146,4 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
     public void handleMessage(Message message) {
 
     }
-
-
 }

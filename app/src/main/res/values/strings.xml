@@ -5,20 +5,11 @@
     <string name="title_activity_main2">MainActivity2</string>
 
 
-    <string name="exit_2_login">退出登录</string>
-
-
     <string name="home">首页</string>
     <string name="navigation_home">首页</string>
     <string name="navigation_shop">商城</string>
     <string name="navigation_favor">收藏夹</string>
-
-
+    <string name="navigation_tips">户外知识</string>
     <string name="navigation_person">我的</string>
-    <string name="dispatcher">调度专员</string>
-    <string name="account">账户安全</string>
-    <string name="feed_back">用户反馈</string>
-    <string name="feed_back_desc_text">欢迎反馈问题，您的意见与建议就是我们的动力！</string>
-<!--我们会认真阅读您反馈的每一个问题，并尽快给您答复，在这里您可要剔除遇到的问题，也可以发表自己的建议和想法。-->
-
+    <string name="navigation_enroll">服务协议</string>
 </resources>

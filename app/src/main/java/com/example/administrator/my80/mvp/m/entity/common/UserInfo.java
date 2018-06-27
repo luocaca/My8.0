@@ -1,12 +1,12 @@
 package com.example.administrator.my80.mvp.m.entity.common;
 
-import java.io.Serializable;
+import cn.bmob.v3.BmobObject;
 
 /**
  * Created by Administrator on 2017/4/28.
  */
 
-public class UserInfo implements Serializable {
+public class UserInfo  extends BmobObject {
 
 
     /**
@@ -81,7 +81,7 @@ public class UserInfo implements Serializable {
     public boolean isInvoices;
     public String permissions;
     public String storeId = "";
-    public String headImage;
+    public String headImage = "http://i02.pictn.sogoucdn.com/73a90748d5e19769";
     public boolean isPartners;
     public boolean cashOnDelivery;
     public boolean receiptMsg;

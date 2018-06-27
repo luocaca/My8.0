@@ -26,7 +26,7 @@
             android:layout_marginTop="20dp"
             android:background="@color/white"
             android:gravity="top|start"
-            android:hint="@string/feed_back_desc_text"
+            android:hint="hello"
             android:textColorHint="@android:color/holo_red_light"
             android:padding="5dp"
             />
