@@ -1,15 +1,15 @@
 package com.example.administrator.my80.mvp.ui.main.child;
 
-import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.fragment.BaseLazyFragment;
-import com.example.art.mvp.IPresenter;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * 报名须知
@@ -17,29 +17,16 @@ import butterknife.BindView;
 
 public class FragmentTips extends BaseLazyFragment {
 
-
     @BindView(R.id.web)
     WebView web;
 
-
     @Override
-    protected void initImmersionBar() {
-        super.initImmersionBar();
-        mImmersionBar.statusBarColorTransformEnable(true)
-                .fitsSystemWindows(true)
-                .navigationBarColor(R.color.white)
-                .statusBarDarkFont(true)
-                .statusBarColor(R.color.white)
-                .init();
+    protected void onFragmentVisibleChange(boolean b) {
+
     }
 
     @Override
-    protected int setLayoutId() {
-        return R.layout.tips;
-    }
-
-    @Override
-    public void initData(Bundle saveInstanceState) {
+    protected void onFragmentFirstVisible() {
 
 
         WebSettings webSettings = web.getSettings();
@@ -66,16 +53,13 @@ public class FragmentTips extends BaseLazyFragment {
 
     }
 
-
     @Override
-    public IPresenter obtainPresenter() {
-        return null;
+    protected void initView(View rootView) {
+
     }
 
     @Override
-    public void setData(Object data) {
-
+    protected int bindLayoutID() {
+        return R.layout.tips;
     }
-
-
 }

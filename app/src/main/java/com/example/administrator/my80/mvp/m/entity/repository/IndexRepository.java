@@ -1,6 +1,6 @@
 package com.example.administrator.my80.mvp.m.entity.repository;
 
-import com.blankj.ALog;
+import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.mvp.m.api.cache.CommonCache;
 import com.example.administrator.my80.mvp.m.api.service.CommonService;
 import com.example.administrator.my80.mvp.m.entity.base.BaseJson;

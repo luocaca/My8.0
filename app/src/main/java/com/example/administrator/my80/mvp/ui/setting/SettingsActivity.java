@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.blankj.ALog;
+import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.mvp.ui.webpage.AboutActivity;
 import com.example.art.base.BaseActivity;

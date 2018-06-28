@@ -84,7 +84,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'cn.lemon:multiview:1.0.2'
 
     compile project(':art')
     compile project(':xxlib')
@@ -153,6 +152,18 @@ dependencies {
 
     //如果你想应用能够兼容Android6.0，请添加此依赖(org.apache.http.legacy.jar)
     compile 'cn.bmob.android:http-legacy:1.0'
+    compile 'com.blankj:alog:0.0.1'
+
+    compile ('cn.lemon:multiview:1.0.2'){
+        exclude module: 'resthttp'
+    }
+
+
+    compile 'cn.alien95:resthttp:1.0.7'
+
+    compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
+
+    compile 'org.jsoup:jsoup:1.11.3'
 
 
 }

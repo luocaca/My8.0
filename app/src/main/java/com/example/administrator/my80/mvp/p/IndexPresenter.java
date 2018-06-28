@@ -1,6 +1,6 @@
 package com.example.administrator.my80.mvp.p;
 
-import com.blankj.ALog;
+import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.mvp.m.entity.base.BaseJson;
 import com.example.administrator.my80.mvp.m.entity.index.Index;
 import com.example.administrator.my80.mvp.m.entity.index.PageChild;

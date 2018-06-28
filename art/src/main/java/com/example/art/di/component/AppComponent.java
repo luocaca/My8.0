@@ -43,7 +43,8 @@ import okhttp3.OkHttpClient;
 @Singleton
 @Component(modules = {AppModule.class, GlobalConfigModule.class, ClientModule.class})
 public interface AppComponent {
-
+//    Error:Execution failed for task ':art:compileDebugJavaWithJavac'.
+//            > java.lang.NoClassDefFoundError: dagger/Provides
 
     /**
      * {@code}

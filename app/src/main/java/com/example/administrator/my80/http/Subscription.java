@@ -1,8 +1,11 @@
 package com.example.administrator.my80.http;
 
 /**
- * Created by Administrator on 2018/6/27 0027.
+ * 用于取消 网络
  */
 
-public class Subscription {
+public interface Subscription {
+
+    void unSubscribe();
+
 }

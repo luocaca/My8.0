@@ -1,6 +1,6 @@
 package com.example.administrator.my80.mvp.ui.webpage;
 
-import com.blankj.ALog;
+import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.base.activity.BaseWebActivity;
 import com.example.administrator.my80.i.OnProgressChangeListener;
 

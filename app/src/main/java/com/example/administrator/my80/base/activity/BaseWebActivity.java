@@ -6,7 +6,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.blankj.ALog;
+import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.i.OnProgressChangeListener;
 import com.example.art.base.BaseActivity;

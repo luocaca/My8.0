@@ -5,7 +5,7 @@ import android.text.Html;
 import android.widget.TextView;
 
 import com.example.administrator.my80.R;
-import com.example.administrator.my80.fragment.BaseLazyFragment;
+import com.example.administrator.my80.base.fragment.BaseLazyFragment;
 import com.example.art.mvp.IPresenter;
 
 import butterknife.BindView;
@@ -35,6 +35,11 @@ public class FragmentEnroll extends BaseLazyFragment {
     @Override
     protected int setLayoutId() {
         return R.layout.enroll;
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @Override

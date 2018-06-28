@@ -2,7 +2,6 @@ package com.example.administrator.my80.mvp.ui.main.child;
 
 import android.os.Bundle;
 
-import com.blankj.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.base.fragment.BaseLazyFragment;
 import com.example.administrator.my80.mvp.m.entity.common.UserInfo;
@@ -34,7 +33,6 @@ public class FragmentFavor extends BaseLazyFragment<IndexPresenter> implements I
 
     @Override
     protected void initData() {
-        ALog.e("initData");
         mPresenter.requestFavorList(Message.obtain(this, new Object[]{true, 1}));
 //      mPresenter.requestPageList(Message.obtain(this, new Object[]{true, new QueryPage()}));
         rvFavor.init(new BaseQuickAdapter<UserInfo, BaseViewHolder>(R.layout.item_res) {
@@ -56,7 +54,6 @@ public class FragmentFavor extends BaseLazyFragment<IndexPresenter> implements I
 
     @Override
     public void initData(Bundle saveInstanceState) {
-        ALog.e("initData====saveInstanceState=");
 
     }
 
@@ -76,24 +73,23 @@ public class FragmentFavor extends BaseLazyFragment<IndexPresenter> implements I
 
     @Override
     public void showLoading() {
-        ALog.e("showLoading");
     }
 
     @Override
     public void hideLoading() {
-        ALog.e("hideLoading");
+
 
     }
 
     @Override
     public void showMessage(String message) {
-        ALog.e("showMessage");
+
 
     }
 
     @Override
     public void handleMessage(Message message) {
-        ALog.e("handleMessage");
+
 
     }
 

@@ -1,28 +1,27 @@
-package com.hldj.hmyg.base;
+package com.example.administrator.my80.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.hldj.hmyg.util.D;
-import com.hldj.hmyg.util.FUtil;
+import com.luoxx.xxlib.weidet.D;
 
-import me.imid.swipebacklayout.lib.app.NeedSwipeBackActivity;
+import butterknife.ButterKnife;
+
 
 /**
  * 懒加载  fragment
  */
 
 public abstract class BaseLazyFragment extends Fragment {
+    public Activity mActivity;
 
-    protected NeedSwipeBackActivity mActivity;
 
     // fragment是否显示了
     public boolean mIsVisible = false;
@@ -65,7 +64,7 @@ public abstract class BaseLazyFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         if (mRootView == null) {
             mRootView = view;
-
+            ButterKnife.bind(this, mRootView);
             if (getUserVisibleHint()) {
                 if (isFirstVisible) {
                     onFragmentFirstVisible();
@@ -137,14 +136,10 @@ public abstract class BaseLazyFragment extends Fragment {
     }
 
 
-    protected void setText(TextView tv, String str) {
-        tv.setText(FUtil.$(str));
-    }
-
 
     @Override
     public void onAttach(Context context) {
-        mActivity = (NeedSwipeBackActivity) context;
+        mActivity = (Activity) context;
         super.onAttach(context);
     }
 
@@ -172,24 +167,5 @@ public abstract class BaseLazyFragment extends Fragment {
     }
 
 
-    public void showLoading() {
-        showLoading("");
-    }
-
-    public void showLoading(String str) {
-        if (mActivity != null && !mActivity.isFinishing()) {
-            if (TextUtils.isEmpty(str)) {
-                mActivity.showLoading();
-            } else {
-                mActivity.showLoading(str);
-            }
-        }
-    }
-
-    public void hidenLoading() {
-        if (mActivity != null && !mActivity.isFinishing()) {
-            mActivity.hindLoading();
-        }
-    }
 
 }
