@@ -5,7 +5,9 @@ android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     useLibrary 'org.apache.http.legacy'
-
+    //需要加入的两句话
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
 
     sourceSets {
         main {
@@ -155,15 +157,36 @@ dependencies {
     compile 'com.blankj:alog:0.0.1'
 
     compile ('cn.lemon:multiview:1.0.2'){
-        exclude module: 'resthttp'
+//        exclude module: 'resthttp'
     }
 
 
-    compile 'cn.alien95:resthttp:1.0.7'
+//    compile 'cn.alien95:resthttp:1.0.7'
 
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
 
     compile 'org.jsoup:jsoup:1.11.3'
 
 
+    compile ('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'){
+//        exclude module: 'com.android.support'
+    }
+
+//    compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
+
+
+
+
+}
+
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '25.3.1'
+            }
+        }
+    }
 }

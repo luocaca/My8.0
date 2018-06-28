@@ -2,7 +2,6 @@ package com.example.administrator.my80.mvp.ui.main.child;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,14 +9,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.allen.library.SuperTextView;
 import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.adapter.OneAdapter;
 import com.example.administrator.my80.base.fragment.BaseLazyFragment;
-import com.example.administrator.my80.http.AjaxCallBack;
-import com.example.administrator.my80.http.PostUtil;
 import com.example.administrator.my80.mvp.m.entity.UserInfo;
+import com.example.administrator.my80.mvp.m.entity.mountaineering.ImagesBean;
+import com.example.administrator.my80.mvp.m.entity.mountaineering.Mountaineering;
 import com.example.administrator.my80.mvp.p.UserInfoPresenter;
 import com.example.administrator.my80.util.GlideImageLoader;
 import com.example.art.base.App;
@@ -28,36 +30,15 @@ import com.luoxx.xxlib.weidet.BaseQuickAdapter;
 import com.youth.banner.Banner;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import butterknife.BindView;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
-import cn.lemon.resthttp.request.Cache;
-import cn.lemon.resthttp.request.Request;
-import cn.lemon.resthttp.request.Response;
-import cn.lemon.resthttp.request.RestHttp;
-import cn.lemon.resthttp.request.ServerCache;
-import cn.lemon.resthttp.request.callback.HttpCallback;
-import cn.lemon.resthttp.request.http.HttpHeaderParser;
-import cn.lemon.resthttp.request.http.HttpRequest;
-import cn.lemon.resthttp.util.HttpLog;
-import cn.lemon.resthttp.util.RestHttpLog;
-import cn.lemon.resthttp.util.Util;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -83,6 +64,9 @@ import retrofit2.http.GET;
 public class FragmentHome extends BaseLazyFragment {
 
     private static final String TAG = "FragmentHome";
+    private Banner banner;
+    private TextView content;
+    private TextView price;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -171,40 +155,103 @@ public class FragmentHome extends BaseLazyFragment {
         mOneAdapter = new OneAdapter(mActivity);
         mOneAdapter.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         mRv.setAdapter(mOneAdapter);
-        addHeaderView();
-        addHeaderView1();
-        addHeaderView2();
-//        mOneAdapter.setPreLoadNumber(1);
-        mOneAdapter.setNewData(mItemList);
+
+
+        pullOnlineData();
+
+
     }
 
-    private void addHeaderView() {
-        if (mImages != null && mImages.size() > 0) {
+    private void addHeaderView(List<ImagesBean> imagesBeanList) {
+        if (headView == null) {
             headView = LayoutInflater.from(mActivity).inflate(R.layout.item_banner, (ViewGroup) mRv.getParent(), false);
-            Banner banner = (Banner) headView.findViewById(R.id.banner);
-            banner.setImages(mImages)
-                    .setImageLoader(new GlideImageLoader())
-                    .setDelayTime(5000)
-                    .start();
+            banner = (Banner) headView.findViewById(R.id.banner);
+
+            if (imagesBeanList != null)
+                banner.setImages(imagesBeanList)
+                        .setImageLoader(new GlideImageLoader())
+                        .setDelayTime(5000)
+                        .start();
             mOneAdapter.addHeaderView(headView);
-            ViewGroup.LayoutParams bannerParams = banner.getLayoutParams();
 //            ViewGroup.LayoutParams titleBarParams = mToolbar.getLayoutParams();
 //            bannerHeight = bannerParams.height - titleBarParams.height - ImmersionBar.getStatusBarHeight(getActivity());
+        } else {
+            if (imagesBeanList != null && banner != null) {
+//                Banner banner = (Banner) headView.findViewById(R.id.banner);
+                banner.setImages(imagesBeanList)
+                        .setImageLoader(new GlideImageLoader())
+                        .setDelayTime(5000)
+                        .start();
+            }
+
+
         }
+
+
     }
 
 
-    private void addHeaderView1() {
+    private void addHeaderView1(Mountaineering mountaineering) {
 
-        headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head, (ViewGroup) mRv.getParent(), false);
-        mOneAdapter.addHeaderView(headView);
+
+        if (content == null) {
+            headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head, (ViewGroup) mRv.getParent(), false);
+            mOneAdapter.addHeaderView(headView);
+            content = (TextView) headView.findViewById(R.id.content);
+            price = (TextView) headView.findViewById(R.id.price);
+            content.setText(mountaineering.data.title);
+            price.setText("￥" + mountaineering.data.price + "");
+
+        } else {
+            content.setText(mountaineering.data.leaderName);
+            price.setText(mountaineering.data.price + "");
+
+        }
+
 
     }
 
-    private void addHeaderView2() {
 
-        headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head_2, (ViewGroup) mRv.getParent(), false);
-        mOneAdapter.addHeaderView(headView);
+    /* 上车线路 */
+    private SuperTextView fjzs;
+    private SuperTextView scdd;
+    private SuperTextView xlts;
+    private SuperTextView leader_name;
+    private SuperTextView userJoin;
+    private TextView zeng_title;
+    private TextView zeng_content;
+
+    private void addHeaderView2(Mountaineering mountaineering) {
+
+        if (fjzs == null) {
+            headView = LayoutInflater.from(mActivity).inflate(R.layout.item_head_2, (ViewGroup) mRv.getParent(), false);
+            mOneAdapter.addHeaderView(headView);
+            fjzs = (SuperTextView) headView.findViewById(R.id.fjzs);
+            scdd = (SuperTextView) headView.findViewById(R.id.scdd);
+            xlts = (SuperTextView) headView.findViewById(R.id.xlts);
+            leader_name = (SuperTextView) headView.findViewById(R.id.leader_name);
+            userJoin = (SuperTextView) headView.findViewById(R.id.userJoin);
+            zeng_title = (TextView) headView.findViewById(R.id.zeng_title);
+            zeng_content = (TextView) headView.findViewById(R.id.zeng_content);
+//            scxl.setText(mountaineering.data.lineFeature);
+            xlts.setLeftString("线路特色：" + mountaineering.data.lineFeature);
+            scdd.setLeftString("上车地点:" + mountaineering.data.loaction);
+            fjzs.setLeftString("风景指数:" + mountaineering.data.star + "颗❤");
+            leader_name.setLeftString("包名列报:" + mountaineering.data.leaderName);
+            userJoin.setLeftString("活动领队:" + mountaineering.data.userJoin);
+            zeng_title.setText(mountaineering.data.specialOffers);
+            zeng_content.setText(mountaineering.data.desc);
+
+        } else {
+            xlts.setLeftString("线路特色：" + mountaineering.data.lineFeature);
+            scdd.setLeftString("上车地点:" + mountaineering.data.loaction);
+            fjzs.setLeftString("风景指数:" + mountaineering.data.star + "颗❤");
+            leader_name.setLeftString("包名列报:" + mountaineering.data.leaderName);
+            userJoin.setLeftString("活动领队:" + mountaineering.data.userJoin);
+            zeng_title.setText(mountaineering.data.specialOffers);
+            zeng_content.setText(mountaineering.data.desc);
+        }
+
 
     }
 
@@ -239,115 +286,52 @@ public class FragmentHome extends BaseLazyFragment {
                 String requesUrl1 = "http://www.luocaca.cn/hello-ssm/mountaineering/lately";
                 String html = "http://www.luocaca.cn/hello-ssm/mountaineering/lately";
                 String html2 = "https://www.jfdaily.com/news/detail";
+
+                pullOnlineData();
 //                String html = "http://www.luocaca.cn/hello-ssm";
 
 //                Map<String , String> heads = new HashMap<String, String>();
 //                heads.put("Content-Type","application/json");
 
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        doGet(html, new HttpCallback() {
-                            @Override
-                            public void success(String s) {
-                                ALog.e("--------s----" + s);
-                            }
-
-                            @Override
-                            public void failure(int status, String info) {
-                                super.failure(status, info);
-                                ALog.e("--------s----" + info);
-                            }
-                        });
-
-                    }
-                }).start();
-
-
-                RestHttp.setDebug(true, "debug");
-
-                HttpRequest.getInstance()
-                        .get(html, new HttpCallback() {
-                            //                        .get("http://api.hclyz.cn:81/mf/jsonxiaoshimei.txt", new HttpCallback() {
-//                        .get("http://www.luocaca.cn/hello-ssm/mountaineering/lately", new HttpCallback() {
-                            @Override
-                            public void failure(int status, String info) {
-                                UiUtils.snackbarText(info);
-                                ALog.w("info is \n" + info);
-                            }
-
-                            @Override
-                            public void success(String s) {
-                                UiUtils.snackbarText(s);
-                                ALog.i("info is \n" + s);
-                            }
-                        });
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        doGet(html, new HttpCallback() {
+//                            @Override
+//                            public void success(String s) {
+//                                ALog.e("--------s----" + s);
+//                            }
+//
+//                            @Override
+//                            public void failure(int status, String info) {
+//                                super.failure(status, info);
+//                                ALog.e("--------s----" + info);
+//                            }
+//                        });
+//
+//                    }
+//                }).start();
 
 
-                ApiInterface apiService = getClient(mActivity, "http://www.luocaca.cn/hello-ssm/").create(ApiInterface.class);
+//                RestHttp.setDebug(true, "debug");
 
-                //"94361"
-                apiService.lately().enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
-
-                        ALog.e("hello-world");
-
-
-                        ResponseBody bean = response.body();
-
-                        ALog.i("" + (bean != null ? bean.source() : null));
-
-                        try {
-                            if (((ResponseBody) response.body()) != null) {
-                                ByteArrayInputStream bais = new ByteArrayInputStream(((ResponseBody) response.body()).bytes());
-
-                                InputStreamReader reader = new InputStreamReader(bais);
-                                BufferedReader in = new BufferedReader(reader);
-
-                                String readed;
-                                StringBuffer buffer = new StringBuffer();
-
-                                while ((readed = in.readLine()) != null) {
-                                    System.out.println(readed); //Log the result
-
-                                    ALog.i("" + readed);
-                                    buffer.append(readed);
-
-                                }
-
-
-                                ALog.i("" + buffer);
-
-//                                Document document = Jsoup.connect("").get();
-
-//                                Element element = document.body();
-
-
-//                                Document document1 = Jsoup.parse(buffer.toString());
-//                                Element element = document1.getElementById("newscontents");
-
-//                                ALog.i("" + element.text());
-
-
-                            }
-
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-
-                        ALog.e(t.getMessage());
-                    }
-                });
+//                HttpRequest.getInstance()
+//                        .get(html, new HttpCallback() {
+//                            //                        .get("http://api.hclyz.cn:81/mf/jsonxiaoshimei.txt", new HttpCallback() {
+////                        .get("http://www.luocaca.cn/hello-ssm/mountaineering/lately", new HttpCallback() {
+//                            @Override
+//                            public void failure(int status, String info) {
+//                                UiUtils.snackbarText(info);
+//                                ALog.w("info is \n" + info);
+//                            }
+//
+//                            @Override
+//                            public void success(String s) {
+//                                UiUtils.snackbarText(s);
+//                                ALog.i("info is \n" + s);
+//                            }
+//                        });
 
 
 //                new Thread(new Runnable() {
@@ -385,37 +369,37 @@ public class FragmentHome extends BaseLazyFragment {
 //                });
 
 
-                PostUtil.asyncGet(html, new AjaxCallBack() {
-                    @Override
-                    public void onSucceed(String json) {
-                        ALog.i(json);
-                    }
+//                PostUtil.asyncGet(html, new AjaxCallBack() {
+//                    @Override
+//                    public void onSucceed(String json) {
+//                        ALog.i(json);
+//                    }
+//
+//                    @Override
+//                    public void onFailed(Throwable throwable, int errorCode, String errorMsg) {
+//                        ALog.i(errorMsg);
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancle() {
+//                        ALog.i("onCancle");
+//
+//                    }
+//                });
 
-                    @Override
-                    public void onFailed(Throwable throwable, int errorCode, String errorMsg) {
-                        ALog.i(errorMsg);
 
-                    }
-
-                    @Override
-                    public void onCancle() {
-                        ALog.i("onCancle");
-
-                    }
-                });
-
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        mItemList.clear();
-                        mItemList.addAll(newData());
-                        mOneAdapter.setNewData(mItemList);
-                        refreshLayout.finishRefreshing();
-
-                        mImmersionBar.statusBarDarkFont(false).init();
-                    }
-                }, 2000);
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mItemList.clear();
+//                        mItemList.addAll(newData());
+//                        mOneAdapter.setNewData(mItemList);
+//                        refreshLayout.finishRefreshing();
+//
+//                        mImmersionBar.statusBarDarkFont(false).init();
+//                    }
+//                }, 2000);
             }
 
 
@@ -430,6 +414,46 @@ public class FragmentHome extends BaseLazyFragment {
 
             }
         });
+    }
+
+
+    public void pullOnlineData() {
+        ApiInterface apiService = getClient(mActivity, "http://www.luocaca.cn/hello-ssm/").create(ApiInterface.class);
+
+        //"94361"
+        apiService.lately().enqueue(new Callback<Mountaineering>() {
+            @Override
+            public void onResponse(Call<Mountaineering> call, retrofit2.Response<Mountaineering> response) {
+
+                ALog.e("hello-world");
+                Mountaineering mountaineering = response.body();
+
+                if ((mountaineering != null ? mountaineering.data : null) != null) {
+                    addHeaderView(mountaineering.data.listImagesBanner);
+
+
+                    Toast.makeText(mActivity, mountaineering.data.leaderName + "", Toast.LENGTH_SHORT).show();
+
+
+                    addHeaderView1(mountaineering);
+                    addHeaderView2(mountaineering);
+//        mOneAdapter.setPreLoadNumber(1);
+                    mOneAdapter.setNewData(mountaineering.data.listImagesMore);
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Mountaineering> call, Throwable t) {
+
+            }
+
+
+        });
+
+
     }
 
     private List<String> addData() {
@@ -467,7 +491,7 @@ public class FragmentHome extends BaseLazyFragment {
         //http://www.luocaca.cn/hello-ssm/mountaineering/lately
         @GET("mountaineering/lately")
 //        @FormUrlEncoded
-        Call<ResponseBody> lately();
+        Call<Mountaineering> lately();
 
 
 //        Call<ResponseBody> url(@Query("id") String id);
@@ -475,159 +499,6 @@ public class FragmentHome extends BaseLazyFragment {
 
     }
 
-    public void doGet(String url, HttpCallback httpCallback) {
-
-        URL oracle = null;
-        try {
-            oracle = new URL(url);
-            URLConnection yc = oracle.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                    yc.getInputStream(), "utf-8"));//防止乱码
-            String inputLine = null;
-            while ((inputLine = in.readLine()) != null) {
-                ALog.e("----inputLine---" + inputLine);
-            }
-
-
-
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-
-
-
-
-
-        try {
-            URL url1=new URL(url);
-            HttpURLConnection urlConnection=(HttpURLConnection) url1.openConnection();
-            urlConnection.setConnectTimeout(5000);
-            urlConnection.setReadTimeout(5000);
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
-            int code=urlConnection.getResponseCode();
-            Log.i("44444444444444", "code="+code);
-            if (code==200) {
-                InputStream inputStream=urlConnection.getInputStream();
-                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                StringBuffer buffer=new StringBuffer();
-                while ((line=bufferedReader.readLine())!=null) {
-                    buffer.append(line);
-
-                }
-                String str=buffer.toString();
-
-
-            }
-
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-
-
-
-
-
-
-
-        final byte respondCode = -1;
-
-
-
-
-
-
-
-        try {
-            URL url1 = new URL(url);
-            HttpURLConnection  urlConnection = (HttpURLConnection) url1.openConnection();
-
-
-//           urlConnection.setDoOutput(true);
-
-            urlConnection.setDoInput(true);
-
-            urlConnection.setConnectTimeout(5000);
-            urlConnection.setReadTimeout(5000);
-            urlConnection.setRequestMethod("GET");
-//            this.configURLConnection(urlConnection, new Request(url, 11, null, httpCallback));
-//            urlConnection.setDoOutput(true);
-//            urlConnection.setDoInput(true);
-//            urlConnection.setConnectTimeout(10000);
-//            urlConnection.setReadTimeout(10000);
-//            urlConnection.setInstanceFollowRedirects(true);
-//            if (request.method == 11) {
-
-
-            urlConnection.connect();
-
-
-            final int respondCode1 = urlConnection.getResponseCode();
-            InputStream e = urlConnection.getInputStream();
-            final String logCode;
-            if (respondCode1 == 302) {
-                logCode = urlConnection.getHeaderField("Location");
-
-                HttpLog.Log("302重定向Location : " + logCode);
-
-            } else if (respondCode1 == 200) {
-                Map logCode2 = urlConnection.getHeaderFields();
-                Set logCode1 = logCode2.keySet();
-                HashMap headersStr = new HashMap();
-                RestHttpLog.i(new String[]{url + "  响应头信息："});
-                Iterator result = logCode1.iterator();
-
-                while (result.hasNext()) {
-                    String response = (String) result.next();
-                    String entry = urlConnection.getHeaderField(response);
-                    headersStr.put(response, entry);
-                    RestHttpLog.i(new String[]{response + "  " + entry});
-                }
-
-                final String result1 = this.readInputStream(e);
-                e.close();
-                Response response1 = new Response(result1, headersStr);
-                Cache.Entry entry1 = HttpHeaderParser.parseCacheHeaders(response1);
-                if (entry1 != null) {
-                    ServerCache.getInstance().put(Util.getCacheKey(url), entry1);
-                    RestHttpLog.i(new String[]{entry1.toString()});
-                }
-
-
-            } else {
-                logCode = this.readInputStream(e);
-                if (e != null) {
-                    e.close();
-                } else {
-                    RestHttpLog.i(new String[]{"urlConnection.getErrorStream() == null,respondCode : " + respondCode1});
-                }
-
-
-            }
-        } catch (final Throwable var16) {
-            if (RestHttpLog.isDebug()) {
-                RestHttpLog.i(new String[]{"网络异常 : " + url});
-                var16.printStackTrace();
-            }
-
-
-        }
-
-
-    }
 
 
     public static Retrofit getClient(Context context, String BASE_URL) {
@@ -647,29 +518,6 @@ public class FragmentHome extends BaseLazyFragment {
     }
 
 
-    public HttpURLConnection configURLConnection(HttpURLConnection urlConnection, Request request) {
-        try {
-            urlConnection.setDoOutput(true);
-            urlConnection.setDoInput(true);
-            urlConnection.setConnectTimeout(10000);
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setInstanceFollowRedirects(true);
-//            if (request.method == 11) {
-            urlConnection.setRequestMethod("GET");
-//            } else if (request.method == 12) {
-//                urlConnection.setRequestMethod("POST");
-//            }
-
-
-//            urlConnection.connect();
-        } catch (Throwable var5) {
-            if (RestHttpLog.isDebug()) {
-                var5.printStackTrace();
-            }
-        }
-
-        return urlConnection;
-    }
 
 
     public String readInputStream(InputStream in) {

@@ -8,17 +8,17 @@
 
 
     <com.allen.library.SuperTextView
+        android:id="@+id/xlts"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:sLeftIconHeight="19dp"
         app:sLeftIconRes="@drawable/time"
         app:sLeftIconWidth="26dp"
-        app:sLeftTextString="线路特色"
-
-        />
+        app:sLeftTextString="线路特色" />
 
 
     <com.allen.library.SuperTextView
+        android:id="@+id/scdd"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:sLeftIconHeight="39dp"
@@ -29,16 +29,6 @@
         app:sRightIconRes="@drawable/rightarrow"
         app:sRightIconWidth="16dp" />
 
-
-    <com.allen.library.SuperTextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:sLeftIconHeight="26dp"
-        app:sLeftIconRes="@drawable/time"
-        app:sLeftIconWidth="26dp"
-        app:sLeftTextString="线路特色"
-        app:sRightIconHeight="16dp"
-        app:sRightIconWidth="16dp" />
 
     <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
@@ -73,45 +63,38 @@
 
 
     <com.allen.library.SuperTextView
+        android:id="@+id/fjzs"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:sCenterBottomTextColor="@color/colorAccent"
         app:sCenterTopTextString=" "
         app:sCenterViewGravity="left_center"
-        app:sLeftBottomTextString="线路特色：休闲  徒步 摄影  海岛"
         app:sLeftIconRes="@drawable/location_marker"
-        app:sLeftViewGravity="left_center" />
-
-    <com.allen.library.SuperTextView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:sCenterBottomTextColor="@color/colorAccent"
-        app:sCenterTopTextString=" "
-        app:sCenterViewGravity="left_center"
-        app:sLeftBottomTextString="风景指数：※※※※※"
-        app:sLeftIconRes="@drawable/location_marker"
+        app:sLeftTextString="风景指数：※※※※※"
         app:sLeftViewGravity="left_center" />
 
 
     <com.allen.library.SuperTextView
+        android:id="@+id/leader_name"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:sCenterBottomTextColor="@color/colorAccent"
         app:sCenterTopTextString=" "
         app:sCenterViewGravity="left_center"
-        app:sLeftBottomTextString="活动领队：二傻么么哒"
         app:sLeftIconRes="@drawable/location_marker"
+        app:sLeftTextString="活动领队：二傻么么哒"
         app:sLeftViewGravity="left_center" />
 
 
     <com.allen.library.SuperTextView
+        android:id="@+id/userJoin"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:sCenterBottomTextColor="@color/colorAccent"
         app:sCenterTopTextString=" "
         app:sCenterViewGravity="left_center"
-        app:sLeftBottomTextString="报名列表：1/45"
         app:sLeftIconRes="@drawable/location_marker"
+        app:sLeftTextString="报名列表：1/45"
         app:sLeftViewGravity="left_center" />
 
     <RelativeLayout
@@ -151,11 +134,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/zeng_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="报名可获100积分没人" />
 
             <TextView
+                android:id="@+id/zeng_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="微信分享可获1000积分，达成交易还可获2000积分/人，上不封顶" />
