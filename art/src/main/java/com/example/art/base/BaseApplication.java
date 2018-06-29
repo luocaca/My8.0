@@ -2,6 +2,7 @@ package com.example.art.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.example.art.base.delegate.AppDelegate;
 import com.example.art.base.delegate.AppLifecycles;
@@ -26,6 +27,7 @@ public class BaseApplication extends Application implements App {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
+        MultiDex.install(base);  //这里比 onCreate 先执行,常用于 MultiDex 初始化,插件化框架的初始化
         this.mAppDelegate = new AppDelegate(base);
         this.mAppDelegate.attachBaseContext(base);
     }

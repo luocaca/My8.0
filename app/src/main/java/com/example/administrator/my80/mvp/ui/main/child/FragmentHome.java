@@ -2,6 +2,7 @@ package com.example.administrator.my80.mvp.ui.main.child;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -389,17 +390,17 @@ public class FragmentHome extends BaseLazyFragment {
 //                });
 
 
-//                new Handler().postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
 //                        mItemList.clear();
 //                        mItemList.addAll(newData());
 //                        mOneAdapter.setNewData(mItemList);
-//                        refreshLayout.finishRefreshing();
-//
+                        refreshLayout.finishRefreshing();
+
 //                        mImmersionBar.statusBarDarkFont(false).init();
-//                    }
-//                }, 2000);
+                    }
+                }, 2000);
             }
 
 

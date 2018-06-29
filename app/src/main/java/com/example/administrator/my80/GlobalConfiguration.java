@@ -196,11 +196,7 @@ public final class GlobalConfiguration implements ConfigModule {
         lifecycles.add(new AppLifecycles() {
             @Override
             public void attachBaseContext(Context base) {
-                //  MultiDex.install(base);  //这里比 onCreate 先执行,常用于 MultiDex 初始化,插件化框架的初始化
-
-
-
-
+                AttachApp.attachApp(base);
             }
 
             @Override

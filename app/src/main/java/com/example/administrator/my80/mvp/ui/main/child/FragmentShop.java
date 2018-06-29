@@ -17,6 +17,7 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import cn.lemon.multi.MultiView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -30,13 +31,13 @@ public class FragmentShop extends BaseLazyFragment {
 
     private List<String> mData = new ArrayList<>();
 
-    //    @BindView(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     CoreRecyclerView coreRecyclerView;
 
 
     protected void initView() {
 
-
+//        Error:In <declare-styleable> FontFamilyFont, unable to find attribute android:font
 
     }
 
@@ -50,9 +51,8 @@ public class FragmentShop extends BaseLazyFragment {
     protected void onFragmentFirstVisible() {
 
 
-
         RxPermissions rxPermissions = new RxPermissions(mActivity);
-        coreRecyclerView = getView(R.id.recyclerView);
+//        coreRecyclerView = getView(R.id.recyclerView);
 
 //                rxPermissions.ensure().apply(new );
         rxPermissions
@@ -104,9 +104,6 @@ public class FragmentShop extends BaseLazyFragment {
                 data.add("http://i02.pictn.sogoucdn.com/73a90748d5e19769");
 
                 multiView.setImages(data);
-
-
-
 
 
             }

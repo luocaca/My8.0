@@ -17,7 +17,7 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
 
-
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -126,4 +126,8 @@ dependencies {
 
 //    testCompile 'junit:junit:4.12'
     compile(rootProject.ext.dependencies["timber"])
+
+    compile 'com.android.support:multidex:1.0.1'
+
+
 }

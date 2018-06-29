@@ -27,9 +27,13 @@ public class GlideImageLoader extends ImageLoader {
             realUrl = ((ImagesBean) path).url;
         }
 
+
+//        RequestBuilder requestBuilder  = new RequestBuilder().
+
         Glide.with(context.getApplicationContext())
                 .load(realUrl)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+//                .apply()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .placeholder(R.mipmap.test)
                 .into(imageView);

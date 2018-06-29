@@ -7,11 +7,10 @@
     <ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:background="@android:color/white"
-        android:padding="20dp"
-        android:scaleType="centerCrop"
-       />
+        android:padding="4dp"
+        android:scaleType="centerCrop" />
 </LinearLayout>
 
