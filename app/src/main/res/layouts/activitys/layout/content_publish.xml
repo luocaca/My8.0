@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.administrator.my80.mvp.ui.publish.PublishActivity"
+    tools:showIn="@layout/activity_publish">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!--android.support.design:hintAnimationEnabled | 是否显示hint的动画,默认true-->
+            <!--android.support.design:hintEnabled | 是否使用hint属性,默认true-->
+            <!--android.support.design:hintTextAppearance | 设置hint的文字样式(指运行动画效果之后的样式)-->
+            <!--android.support.design:counterEnabled | 是否显示计数器-->
+            <!--android.support.design:counterMaxLength | 设置计数器的最大值-->
+            <!--android.support.design:counterOverflowTextAppearance | 输入字符大于我们限定个数字符时的样式-->
+            <!--app:theme 设置浮动标签的颜色主题-->
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="活动标题"
+                    android:imeOptions="actionNext" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/top_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="start"
+                    android:hint="头部图片"
+                    android:imeOptions="actionNext" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/select_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="选择并上传" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/loaction"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="上车地点"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/lineFeature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="特色线路"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/star"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="风景指数"
+                    android:imeOptions="actionNext"
+                    android:inputType="number" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/leaderName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="活动领队"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/userJoin"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="报名列表"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/specialOffers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="活动优惠"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="一段描述"
+                    android:imeOptions="actionNext"
+                    android:inputType="text" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/close_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="结束日期"
+                    android:imeOptions="actionNext"
+                    android:inputType="date" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/select_date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="选择日期" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true">
+
+                <!--EditText 设置左侧图片,系统建议drawableStart/drawableLeft一起用,API>17-->
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/bottom_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:gravity="start"
+                    android:hint="底部图片"
+                   />
+
+            </android.support.design.widget.TextInputLayout>
+            <Button
+                android:id="@+id/select_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="选择并上传" />
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/publish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="发布"
+        android:textColor="@color/white" />
+
+
+</LinearLayout>
+
+

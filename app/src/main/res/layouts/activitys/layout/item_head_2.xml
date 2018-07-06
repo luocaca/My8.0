@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:hedgehog="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_bg_ed"
@@ -11,9 +12,6 @@
         android:id="@+id/xlts"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:sLeftIconHeight="19dp"
-        app:sLeftIconRes="@drawable/time"
-        app:sLeftIconWidth="26dp"
         app:sLeftTextString="线路特色" />
 
 
@@ -21,57 +19,76 @@
         android:id="@+id/scdd"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        app:sLeftIconHeight="39dp"
-        app:sLeftIconRes="@drawable/location_marker"
-        app:sLeftIconWidth="26dp"
         app:sLeftTextString="上车地点：请选择"
-        app:sRightIconHeight="16dp"
-        app:sRightIconRes="@drawable/rightarrow"
-        app:sRightIconWidth="16dp" />
+
+        />
 
 
-    <com.google.android.flexbox.FlexboxLayout
+    <!--<com.google.android.flexbox.FlexboxLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--app:alignContent="flex_start"-->
+    <!--app:alignItems="flex_start"-->
+    <!--app:flexWrap="wrap"-->
+    <!--app:showDivider="beginning|middle">-->
+
+    <!--<TextView-->
+    <!--style="@style/FlexItem"-->
+    <!--android:text="1" />-->
+
+    <!--<TextView-->
+    <!--style="@style/FlexItem"-->
+    <!--android:text="2" />-->
+
+    <!--<TextView-->
+    <!--style="@style/FlexItem"-->
+    <!--android:text="3" />-->
+
+    <!--<TextView-->
+    <!--style="@style/FlexItem"-->
+    <!--android:text="4" />-->
+
+    <!--<TextView-->
+    <!--style="@style/FlexItem"-->
+    <!--android:text="5" />-->
+
+
+    <!--</com.google.android.flexbox.FlexboxLayout>-->
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:alignContent="flex_start"
-        app:alignItems="flex_start"
-        app:flexWrap="wrap"
-        app:showDivider="beginning|middle">
+        android:background="@color/white"
+        android:orientation="horizontal">
 
         <TextView
-            style="@style/FlexItem"
-            android:text="1" />
+            android:id="@+id/fjzs"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textColor="@color/text_color333"
+            android:paddingLeft="10dp"
+            android:text="风景指数：" />
 
-        <TextView
-            style="@style/FlexItem"
-            android:text="2" />
-
-        <TextView
-            style="@style/FlexItem"
-            android:text="3" />
-
-        <TextView
-            style="@style/FlexItem"
-            android:text="4" />
-
-        <TextView
-            style="@style/FlexItem"
-            android:text="5" />
-
-
-    </com.google.android.flexbox.FlexboxLayout>
-
-
-    <com.allen.library.SuperTextView
-        android:id="@+id/fjzs"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:sCenterBottomTextColor="@color/colorAccent"
-        app:sCenterTopTextString=" "
-        app:sCenterViewGravity="left_center"
-        app:sLeftIconRes="@drawable/location_marker"
-        app:sLeftTextString="风景指数：※※※※※"
-        app:sLeftViewGravity="left_center" />
+        <com.hedgehog.ratingbar.RatingBar
+            android:id="@+id/ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            app:clickable="true"
+            app:halfstart="true"
+            app:starCount="5"
+            app:starEmpty="@mipmap/star_empty"
+            app:starFill="@mipmap/star_full"
+            app:starHalf="@mipmap/star_half"
+            app:starImageHeight="24dp"
+            app:starImagePadding="20dp"
+            app:starImageWidth="40dp" />
+    </LinearLayout>
 
 
     <com.allen.library.SuperTextView
@@ -81,7 +98,6 @@
         app:sCenterBottomTextColor="@color/colorAccent"
         app:sCenterTopTextString=" "
         app:sCenterViewGravity="left_center"
-        app:sLeftIconRes="@drawable/location_marker"
         app:sLeftTextString="活动领队：二傻么么哒"
         app:sLeftViewGravity="left_center" />
 
@@ -93,7 +109,6 @@
         app:sCenterBottomTextColor="@color/colorAccent"
         app:sCenterTopTextString=" "
         app:sCenterViewGravity="left_center"
-        app:sLeftIconRes="@drawable/location_marker"
         app:sLeftTextString="报名列表：1/45"
         app:sLeftViewGravity="left_center" />
 
@@ -101,6 +116,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:padding="6dp">
 
         <TextView
@@ -118,6 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/hdyh"
             android:layout_marginRight="4dp"
+            android:layout_marginTop="6dp"
             android:background="@color/tip_color"
             android:padding="2dp"
             android:text="赠"

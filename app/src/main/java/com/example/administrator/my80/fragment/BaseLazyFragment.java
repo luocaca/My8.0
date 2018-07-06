@@ -65,9 +65,11 @@ public abstract class BaseLazyFragment extends Fragment {
         if (mRootView == null) {
             mRootView = view;
             ButterKnife.bind(this, mRootView);
+
             if (getUserVisibleHint()) {
                 if (isFirstVisible) {
                     onFragmentFirstVisible();
+                    initView(mRootView);
                     isFirstVisible = false;
                 }
                 onFragmentVisibleChange(true);
@@ -136,7 +138,6 @@ public abstract class BaseLazyFragment extends Fragment {
     }
 
 
-
     @Override
     public void onAttach(Context context) {
         mActivity = (Activity) context;
@@ -165,7 +166,6 @@ public abstract class BaseLazyFragment extends Fragment {
         }
         return (T) view;
     }
-
 
 
 }

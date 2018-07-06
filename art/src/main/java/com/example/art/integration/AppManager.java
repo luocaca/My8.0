@@ -53,7 +53,7 @@ public final class AppManager {
 
     @Subscriber(tag = APPMANAGER_MESSAGE, mode = ThreadMode.MAIN)
     public void onReceive(Message message) {
-        showSnackbar(message.toString(),true);
+        showSnackbar(message.obj.toString(),true);
         Log.e(TAG, "onReceive: android.os.Message"+message.toString());
     }
 

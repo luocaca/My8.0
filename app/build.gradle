@@ -8,6 +8,9 @@ android {
     //需要加入的两句话
 //    aaptOptions.cruncherEnabled = false
 //    aaptOptions.useNewCruncher = false
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
 
     sourceSets {
         main {
@@ -39,6 +42,7 @@ android {
         testInstrumentationRunner rootProject.ext.android["androidJUnitRunner"]
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
+        resConfigs "en", "hi"
     }
     buildTypes {
 
@@ -170,18 +174,23 @@ dependencies {
 
 
     compile ('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'){
-        exclude group: 'com.github.bumptech.glide'
+//        exclude group: 'com.github.bumptech.glide'
     }
 
 //    compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
 
-
-
+    compile 'com.afollestad.material-dialogs:commons:0.9.6.0'
+    compile 'com.hedgehog.ratingbar:app:1.1.2'
 
 }
 
 
 configurations.all {
+
+//    all*.exclude group: 'com.google.code.gson'
+    exclude group : 'com.google.code.gson'
+    exclude group: 'com.squareup.okio'
+
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
         if (requested.group == 'com.android.support') {

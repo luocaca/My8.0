@@ -8,4 +8,11 @@
     <color name="gray_bg">#ededed</color>
     <color name="gray_bg_ed">#ededed</color>
     <color name="tip_color">#f4816a</color>
+
+
+    <color name="text_color666">#666666</color>
+    <color name="text_color333">#333333</color>
+    <color name="text_color111">#111111</color>
+    <color name="text_color999">#999999</color>
+    <color name="text_colorccc">#cccccc</color>
 </resources>

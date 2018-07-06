@@ -3,11 +3,13 @@ package com.example.administrator.my80.mvp.ui.main.child;
 import android.Manifest;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.fragment.BaseLazyFragment;
 import com.example.administrator.my80.mvp.m.entity.UserInfo;
+import com.example.administrator.my80.mvp.ui.publish.PublishActivity;
 import com.example.art.utils.UiUtils;
 import com.luoxx.xxlib.weidet.BaseQuickAdapter;
 import com.luoxx.xxlib.weidet.BaseViewHolder;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.lemon.multi.MultiView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
@@ -27,19 +30,14 @@ import io.reactivex.functions.Consumer;
  * Created by Administrator on 2017/8/11 0011.
  */
 
-public class FragmentShop extends BaseLazyFragment {
+public class FragmentShop extends BaseLazyFragment implements View.OnClickListener {
 
     private List<String> mData = new ArrayList<>();
 
     @BindView(R.id.recyclerView)
     CoreRecyclerView coreRecyclerView;
-
-
-    protected void initView() {
-
-//        Error:In <declare-styleable> FontFamilyFont, unable to find attribute android:font
-
-    }
+    @BindView(R.id.publish)
+    Button publish;
 
 
     @Override
@@ -120,5 +118,15 @@ public class FragmentShop extends BaseLazyFragment {
     @Override
     protected int bindLayoutID() {
         return R.layout.shop;
+    }
+
+    @OnClick(R.id.publish)
+    @Override
+    public void onClick(View v) {
+
+        UiUtils.snackbarText("--publish--");
+
+        PublishActivity.start(mActivity);
+
     }
 }

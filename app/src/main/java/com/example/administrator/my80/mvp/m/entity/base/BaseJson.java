@@ -12,6 +12,9 @@ public class BaseJson<T> implements Serializable {
 
 
 //    {"code":"403","msg":"非法请求","version":"v3.0.4"}
+    /**
+     * {"code":"1","msg":"succeed","data":"http://www.luocaca.cn/hello-ssm/upload/PictureSelector_20180706_031703.png"}
+     */
 
     private T data;
     private String code;

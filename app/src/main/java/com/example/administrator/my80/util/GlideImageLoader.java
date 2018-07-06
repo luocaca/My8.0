@@ -4,7 +4,9 @@ import android.content.Context;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.mvp.m.entity.mountaineering.ImagesBean;
 import com.youth.banner.loader.ImageLoader;
@@ -28,14 +30,21 @@ public class GlideImageLoader extends ImageLoader {
         }
 
 
-//        RequestBuilder requestBuilder  = new RequestBuilder().
+//        RequestBuilder requestBuilder  = new RequestBuilder();
+
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.mipmap.test)
+                .error(R.mipmap.test)
+                .priority(Priority.HIGH)
+                .diskCacheStrategy(DiskCacheStrategy.ALL);
 
         Glide.with(context.getApplicationContext())
                 .load(realUrl)
-//                .apply()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
-                .placeholder(R.mipmap.test)
+                .apply(options)
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .centerCrop()
+//                .placeholder(R.mipmap.test)
                 .into(imageView);
     }
 
