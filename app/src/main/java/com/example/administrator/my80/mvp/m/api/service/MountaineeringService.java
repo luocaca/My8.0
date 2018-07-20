@@ -43,11 +43,13 @@ public interface MountaineeringService {
      */
     @GET
     Observable<BaseJson<String>> commitMsg(@Url String url,
+                                           @Query("id") String changeId,
                                            @Query("title") String title,
+                                           @Query("price") String price,
                                            @Query("imagesBanner") String imagesBanner,
                                            @Query("loaction") String loaction,
                                            @Query("lineFeature") String lineFeature,
-                                           @Query("star") int star,
+                                           @Query("star") String star,
                                            @Query("leaderName") String leaderName,
                                            @Query("userJoin") String userJoin,
                                            @Query("specialOffers") String specialOffers,

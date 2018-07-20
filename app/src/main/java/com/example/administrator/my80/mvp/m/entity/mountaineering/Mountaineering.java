@@ -38,6 +38,7 @@ public class Mountaineering implements Serializable {
 
         public int id;
         public String createDate;
+        public String closeDate;
         public String title;
         public String desc;
         public String userJoin;
@@ -45,7 +46,7 @@ public class Mountaineering implements Serializable {
         public String loaction;
         public String lineFeature;
         public int star;
-        public int price = 97;
+        public int price ;
         public String specialOffers;
         public List<ImagesBean> listImagesBanner;
         public List<ImagesBean> listImagesMore;

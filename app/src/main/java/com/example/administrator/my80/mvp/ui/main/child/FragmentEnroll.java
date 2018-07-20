@@ -28,7 +28,7 @@ public class FragmentEnroll extends BaseLazyFragment {
         mImmersionBar.statusBarColorTransformEnable(false)
                 .navigationBarColor(R.color.white)
                 .statusBarDarkFont(true)
-                .statusBarColor(R.color.white)
+//                .statusBarColor(R.color.white)
                 .init();
     }
 

@@ -15,9 +15,12 @@ import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.http.UploadRunnable;
 import com.example.administrator.my80.i.OnImageUploadListener;
+import com.example.administrator.my80.mvp.m.api.Api;
 import com.example.administrator.my80.mvp.m.entity.base.BaseJson;
 import com.example.administrator.my80.mvp.m.entity.mountaineering.ImagesBean;
+import com.example.administrator.my80.mvp.m.entity.mountaineering.Mountaineering;
 import com.example.administrator.my80.mvp.p.MountaineeringPresenter;
+import com.example.administrator.my80.mvp.ui.main.child.FragmentHome;
 import com.example.art.base.App;
 import com.example.art.base.BaseActivity;
 import com.example.art.mvp.IView;
@@ -37,6 +40,8 @@ import java.util.concurrent.Executors;
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.bmob.v3.helper.GsonUtil;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class PublishActivity extends BaseActivity<MountaineeringPresenter> implements IView, View.OnClickListener {
 
@@ -68,6 +73,10 @@ public class PublishActivity extends BaseActivity<MountaineeringPresenter> imple
     @BindView(R.id.desc)
     EditText desc;// 一段描述
 
+    @BindView(R.id.price)
+    EditText price;// 价格
+
+    private int changeId = -1;
 
     private List<LocalMedia> selectList = new ArrayList<>();
     private ExecutorService executorService;
@@ -93,6 +102,50 @@ public class PublishActivity extends BaseActivity<MountaineeringPresenter> imple
             @Override
             public void onClick(View view) {
                 UiUtils.snackbarText("snack");
+
+
+//                FragmentHome.ApiInterface apiService = FragmentHome.getClient(PublishActivity.this, "http://192.168.1.142/hello-ssm/").create(FragmentHome.ApiInterface.class);
+                FragmentHome.ApiInterface apiService = FragmentHome.getClient(PublishActivity.this, "http://www.luocaca.cn/hello-ssm/").create(FragmentHome.ApiInterface.class);
+//        FragmentHome.ApiInterface apiService = getClient(mActivity, "http://www.luocaca.cn/hello-ssm/").create(FragmentHome.ApiInterface.class);
+
+                //"94361"
+                apiService.lately().enqueue(new Callback<Mountaineering>() {
+                    @Override
+                    public void onResponse(Call<Mountaineering> call, retrofit2.Response<Mountaineering> response) {
+
+                        ALog.e("hello-world");
+                        Mountaineering mountaineering = response.body();
+
+                        if ((mountaineering != null ? mountaineering.data : null) != null) {
+
+                            changeId = mountaineering.data.id;
+                            setInputText(title, mountaineering.data.title);
+                            setInputText(price, mountaineering.data.price + "");
+                            setInputText(top_banner, GsonUtil.toJson(mountaineering.data.listImagesBanner));
+                            setInputText(loaction, mountaineering.data.loaction);
+                            setInputText(lineFeature, mountaineering.data.lineFeature);
+                            setInputText(star, mountaineering.data.star + "");
+                            setInputText(leaderName, mountaineering.data.leaderName);
+                            setInputText(userJoin, mountaineering.data.userJoin);
+                            setInputText(specialOffers, mountaineering.data.specialOffers);
+                            setInputText(desc, mountaineering.data.desc);
+                            setInputText(close_date, mountaineering.data.closeDate);
+                            setInputText(bottom_banner, GsonUtil.toJson(mountaineering.data.listImagesMore));
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Mountaineering> call, Throwable t) {
+
+                    }
+
+
+                });
+
+
             }
         });
 
@@ -154,6 +207,7 @@ public class PublishActivity extends BaseActivity<MountaineeringPresenter> imple
         UiUtils.snackbarText("发布");
 
         getInputText(title);
+        getInputText(price);
         getInputText(top_banner);
         getInputText(loaction);
         getInputText(lineFeature);
@@ -165,9 +219,24 @@ public class PublishActivity extends BaseActivity<MountaineeringPresenter> imple
         getInputText(close_date);
         getInputText(bottom_banner);
 //http://www.luocaca.cn/hello-ssm/mountaineering/publish
+        //http://192.168.1.130/hello-ssm/mountaineering/publish
+        String host = "";
+        if (changeId != -1) {
+            host = Api.host+"mountaineering/update";
+
+            ALog.i("host is = " + host);
+        } else {
+            host = Api.host+"mountaineering/add";
+            ALog.i("host is = " + host);
+        }
+        UiUtils.snackbarText(host);
+
         String[] strings = new String[]{
-                "http://www.luocaca.cn/hello-ssm/mountaineering/add",
+//              "http://www.luocaca.cn/hello-ssm/mountaineering/add",
+                host,
+                changeId+"",
                 getInputText(title),
+                getInputText(price),
                 getInputText(top_banner),
                 getInputText(loaction),
                 getInputText(lineFeature),
@@ -319,6 +388,11 @@ public class PublishActivity extends BaseActivity<MountaineeringPresenter> imple
         ALog.i("-----parama--------> " + text.getText().toString());
         return text.getText().toString();
 
+    }
+
+    public void setInputText(EditText text, String content) {
+        ALog.i("-----content--------> " + content);
+        text.setText(content);
     }
 
 

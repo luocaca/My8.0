@@ -9,7 +9,6 @@ import com.example.administrator.my80.R;
 import com.example.administrator.my80.fragment.BaseLazyFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * 报名须知
@@ -24,6 +23,10 @@ public class FragmentTips extends BaseLazyFragment {
     protected void onFragmentVisibleChange(boolean b) {
 
     }
+
+
+
+
 
     @Override
     protected void onFragmentFirstVisible() {

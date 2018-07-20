@@ -19,7 +19,6 @@ import com.example.art.base.App;
 import com.example.art.base.BaseActivity;
 import com.example.art.mvp.IView;
 import com.example.art.mvp.Message;
-import com.example.art.utils.UiUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.ArrayList;
@@ -93,7 +92,7 @@ public class MainActivity extends BaseActivity<UserInfoPresenter> implements IVi
                     break;
                 case R.id.navigation_person:
                     viewPageContent.setCurrentItem(3);
-                    UiUtils.snackbarText("hellow world");
+//                    UiUtils.snackbarText("hellow world");
                     break;
             }
             // 这里必须返回true才能响应点击事件

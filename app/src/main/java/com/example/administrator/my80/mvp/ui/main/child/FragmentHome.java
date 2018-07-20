@@ -1,11 +1,13 @@
 package com.example.administrator.my80.mvp.ui.main.child;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +20,13 @@ import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.adapter.OneAdapter;
 import com.example.administrator.my80.base.fragment.BaseLazyFragment;
+import com.example.administrator.my80.mvp.m.api.Api;
 import com.example.administrator.my80.mvp.m.entity.UserInfo;
 import com.example.administrator.my80.mvp.m.entity.mountaineering.ImagesBean;
 import com.example.administrator.my80.mvp.m.entity.mountaineering.Mountaineering;
 import com.example.administrator.my80.mvp.p.UserInfoPresenter;
 import com.example.administrator.my80.util.GlideImageLoader;
+import com.example.administrator.my80.util.SpanUtils;
 import com.example.art.base.App;
 import com.example.art.utils.UiUtils;
 import com.hedgehog.ratingbar.RatingBar;
@@ -133,11 +137,11 @@ public class FragmentHome extends BaseLazyFragment {
             @Override
             public void done(String objectId, BmobException e) {
                 if (e == null) {
-                    UiUtils.snackbarText("添加数据成功，返回objectId为：" + objectId);
+//                    UiUtils.snackbarText("添加数据成功，返回objectId为：" + objectId);
 
                     Log.i(TAG, "done:添加数据成功 " + objectId);
                 } else {
-                    UiUtils.snackbarText("创建数据失败：" + e.getMessage());
+//                    UiUtils.snackbarText("创建数据失败：" + e.getMessage());
                     Log.i(TAG, "done: 创建数据失败" + objectId + e.getMessage());
                 }
             }
@@ -205,8 +209,8 @@ public class FragmentHome extends BaseLazyFragment {
             price.setText("￥" + mountaineering.data.price + "");
 
         } else {
-            content.setText(mountaineering.data.leaderName);
-            price.setText(mountaineering.data.price + "");
+            content.setText(mountaineering.data.title);
+            price.setText("￥" + mountaineering.data.price + "");
 
         }
 
@@ -218,7 +222,7 @@ public class FragmentHome extends BaseLazyFragment {
 //    private SuperTextView fjzs;
     private RatingBar ratingbar;
     private SuperTextView scdd;
-    private SuperTextView xlts;
+    private TextView xlts;
     private SuperTextView leader_name;
     private SuperTextView userJoin;
     private TextView zeng_title;
@@ -232,31 +236,61 @@ public class FragmentHome extends BaseLazyFragment {
 //            fjzs = (SuperTextView) headView.findViewById(R.id.fjzs);
             ratingbar = (RatingBar) headView.findViewById(R.id.ratingbar);
             scdd = (SuperTextView) headView.findViewById(R.id.scdd);
-            xlts = (SuperTextView) headView.findViewById(R.id.xlts);
+            xlts = (TextView) headView.findViewById(R.id.xlts);
             leader_name = (SuperTextView) headView.findViewById(R.id.leader_name);
             userJoin = (SuperTextView) headView.findViewById(R.id.userJoin);
             zeng_title = (TextView) headView.findViewById(R.id.zeng_title);
             zeng_content = (TextView) headView.findViewById(R.id.zeng_content);
 //            scxl.setText(mountaineering.data.lineFeature);
-            xlts.setLeftString("线路特色：" + mountaineering.data.lineFeature);
+//            xlts.setText("线路特色：" + mountaineering.data.lineFeature);
             scdd.setLeftString("上车地点:" + mountaineering.data.loaction);
 //            fjzs.setLeftString("风景指数:" + mountaineering.data.star + "颗❤");
             ratingbar.setStar(mountaineering.data.star);
-            leader_name.setLeftString("包名列报:" + mountaineering.data.leaderName);
-            userJoin.setLeftString("活动领队:" + mountaineering.data.userJoin);
+            leader_name.setLeftString("报名列报:" + mountaineering.data.userJoin);
+            userJoin.setLeftString("活动领队:" + mountaineering.data.leaderName);
             zeng_title.setText(mountaineering.data.specialOffers);
             zeng_content.setText(mountaineering.data.desc);
+
+            setWithSpan(xlts, mountaineering.data.lineFeature);
+
 
         } else {
-            xlts.setLeftString("线路特色：" + mountaineering.data.lineFeature);
+//            xlts.setText("线路特色：" + mountaineering.data.lineFeature);
+            setWithSpan(xlts, mountaineering.data.lineFeature);
             scdd.setLeftString("上车地点:" + mountaineering.data.loaction);
 //            fjzs.setLeftString("风景指数:" + mountaineering.data.star + "颗❤");
-           ratingbar.setStar(mountaineering.data.star);
+            ratingbar.setStar(mountaineering.data.star);
 
-            leader_name.setLeftString("包名列报:" + mountaineering.data.leaderName);
-            userJoin.setLeftString("活动领队:" + mountaineering.data.userJoin);
+            leader_name.setLeftString("报名列报:" + mountaineering.data.userJoin);
+            userJoin.setLeftString("活动领队:" + mountaineering.data.leaderName);
             zeng_title.setText(mountaineering.data.specialOffers);
             zeng_content.setText(mountaineering.data.desc);
+        }
+
+
+    }
+
+    // 线路特色
+    private void setWithSpan(TextView xts, String lineFeature) {
+
+        SpanUtils spanUtils = new SpanUtils();
+
+        if (!TextUtils.isEmpty(lineFeature) && lineFeature.contains(" ")) {
+
+            String[] strings = lineFeature.split(" ");
+
+            spanUtils.append("线路特色：");
+            for (String string : strings) {
+                spanUtils.append(" ")
+                        .append(" " + string + " ").setBackgroundColor(Color.rgb(27, 80, 119)).setForegroundColor(Color.WHITE)
+                        .append(" ");
+
+            }
+            xts.setText(spanUtils.create());
+
+
+        } else {
+            xlts.setText("线路特色：" + lineFeature);
         }
 
 
@@ -425,7 +459,8 @@ public class FragmentHome extends BaseLazyFragment {
 
 
     public void pullOnlineData() {
-        ApiInterface apiService = getClient(mActivity, "http://www.luocaca.cn/hello-ssm/").create(ApiInterface.class);
+//        ApiInterface apiService = getClient(mActivity, "http://192.168.1.142/hello-ssm/").create(ApiInterface.class);
+        ApiInterface apiService = getClient(mActivity, Api.host ).create(ApiInterface.class);
 
         //"94361"
         apiService.lately().enqueue(new Callback<Mountaineering>() {
@@ -507,7 +542,6 @@ public class FragmentHome extends BaseLazyFragment {
     }
 
 
-
     public static Retrofit getClient(Context context, String BASE_URL) {
 
         Retrofit retrofit = null;
@@ -523,8 +557,6 @@ public class FragmentHome extends BaseLazyFragment {
                 .build();
         return retrofit;
     }
-
-
 
 
     public String readInputStream(InputStream in) {

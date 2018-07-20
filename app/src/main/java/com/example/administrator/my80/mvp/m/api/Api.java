@@ -13,4 +13,8 @@ public interface Api {
 //     String APP_DOMAIN = "http://192.168.1.86:80/api/" + apiVersion;
 //     http://192.168.1.86:80/api/"+ apiVersion
      String RequestSuccess = "0";
+     public static final String host = "http://www.luocaca.cn/hello-ssm/";
+//     public static final String host = "http://192.168.1.142/hello-ssm/";
+
+     //http://www.luocaca.cn/hello-ssm/
 }
