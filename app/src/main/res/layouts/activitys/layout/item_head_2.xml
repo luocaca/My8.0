@@ -10,24 +10,19 @@
 
     <TextView
         android:id="@+id/xlts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="40dp"
-        android:paddingLeft="10dp"
-        android:background="@color/white"
-        android:textColor="@color/text_color333"
-        android:gravity="center_vertical"
-
-        android:text="线路特色线路特色线路特色线路特色线路特色线路特色" />
+        style="@style/TextViewHome" />
 
 
-    <com.allen.library.SuperTextView
+    <TextView
         android:id="@+id/scdd"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:sLeftTextString="上车地点：请选择"
-
-        />
+        style="@style/TextViewHome"
+        android:text="上车地点：请选择" />
+    <!--<com.allen.library.SuperTextView-->
+    <!--android:id="@+id/scdd"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--app:sLeftTextString="上车地点：请选择"-->
+    <!--/>-->
 
 
     <!--<com.google.android.flexbox.FlexboxLayout-->
@@ -73,9 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:gravity="center"
-            android:textColor="@color/text_color333"
             android:paddingLeft="10dp"
-            android:text="风景指数：" />
+            android:text="风景指数："
+            android:textColor="@color/text_color333" />
 
         <com.hedgehog.ratingbar.RatingBar
             android:id="@+id/ratingbar"
@@ -97,26 +92,35 @@
     </LinearLayout>
 
 
-    <com.allen.library.SuperTextView
+    <!--<com.allen.library.SuperTextView-->
+    <!--android:id="@+id/leader_name"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--app:sCenterBottomTextColor="@color/colorAccent"-->
+    <!--app:sCenterTopTextString=" "-->
+    <!--app:sCenterViewGravity="left_center"-->
+    <!--app:sLeftTextString="活动领队：二傻么么哒"-->
+    <!--app:sLeftViewGravity="left_center" />-->
+
+    <TextView
         android:id="@+id/leader_name"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:sCenterBottomTextColor="@color/colorAccent"
-        app:sCenterTopTextString=" "
-        app:sCenterViewGravity="left_center"
-        app:sLeftTextString="活动领队：二傻么么哒"
-        app:sLeftViewGravity="left_center" />
+        style="@style/TextViewHome"
+        android:text="活动领队：二傻么么哒" />
 
 
-    <com.allen.library.SuperTextView
+    <TextView
         android:id="@+id/userJoin"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        app:sCenterBottomTextColor="@color/colorAccent"
-        app:sCenterTopTextString=" "
-        app:sCenterViewGravity="left_center"
-        app:sLeftTextString="报名列表：1/45"
-        app:sLeftViewGravity="left_center" />
+        style="@style/TextViewHome"
+        android:text="报名方式：1/45报名列表：1/45报名列表：1/45报名列表：1/45报名列表：1/45" />
+    <!--<com.allen.library.SuperTextView-->
+    <!--android:id="@+id/userJoin"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--app:sCenterBottomTextColor="@color/colorAccent"-->
+    <!--app:sCenterTopTextString=" "-->
+    <!--app:sCenterViewGravity="left_center"-->
+    <!--app:sLeftTextString="报名列表：1/45"-->
+    <!--app:sLeftViewGravity="left_center" />-->
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -136,14 +140,14 @@
 
         <TextView
             android:id="@+id/zeng"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
             android:layout_below="@+id/hdyh"
             android:layout_marginRight="4dp"
             android:layout_marginTop="6dp"
             android:background="@color/tip_color"
             android:padding="2dp"
-            android:text="赠"
+            android:text="*"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
@@ -160,13 +164,62 @@
                 android:id="@+id/zeng_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="报名可获100积分没人" />
+                android:minHeight="40dp"
+                android:text="活动优惠活动优惠活动优惠活动优惠活动优惠活动优惠活动优惠活动优惠活动优惠活动优惠活动优惠活动优惠活动优惠"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/xmms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="项目描述"
+            android:textColor="@color/tip_color"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/zeng1"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_below="@+id/xmms"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/tip_color"
+            android:padding="2dp"
+            android:text="*"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/xmms"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/zeng1"
+            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/zeng_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="微信分享可获1000积分，达成交易还可获2000积分/人，上不封顶" />
+                android:minHeight="40dp"
+                android:text="项目描述项目描述项目描述项目描述项目描述项目描述项目描述项目描述项目描述"
+                android:textSize="16sp" />
 
 
         </LinearLayout>

@@ -13,9 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.allen.library.SuperTextView;
 import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.R;
 import com.example.administrator.my80.adapter.OneAdapter;
@@ -28,7 +26,6 @@ import com.example.administrator.my80.mvp.p.UserInfoPresenter;
 import com.example.administrator.my80.util.GlideImageLoader;
 import com.example.administrator.my80.util.SpanUtils;
 import com.example.art.base.App;
-import com.example.art.utils.UiUtils;
 import com.hedgehog.ratingbar.RatingBar;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
@@ -129,7 +126,7 @@ public class FragmentHome extends BaseLazyFragment {
     @Override
     public void initData(Bundle saveInstanceState) {
 
-        UiUtils.snackbarText("上传 bmob");
+//        UiUtils.snackbarText("上传 bmob");
         UserInfo p2 = new UserInfo();
         p2.displayName = "大傻";
         p2.address = "北京海淀";
@@ -221,10 +218,10 @@ public class FragmentHome extends BaseLazyFragment {
     /* 上车线路 */
 //    private SuperTextView fjzs;
     private RatingBar ratingbar;
-    private SuperTextView scdd;
+    private TextView scdd;
     private TextView xlts;
-    private SuperTextView leader_name;
-    private SuperTextView userJoin;
+    private  TextView leader_name;
+    private TextView userJoin;
     private TextView zeng_title;
     private TextView zeng_content;
 
@@ -235,19 +232,19 @@ public class FragmentHome extends BaseLazyFragment {
             mOneAdapter.addHeaderView(headView);
 //            fjzs = (SuperTextView) headView.findViewById(R.id.fjzs);
             ratingbar = (RatingBar) headView.findViewById(R.id.ratingbar);
-            scdd = (SuperTextView) headView.findViewById(R.id.scdd);
+            scdd = (TextView) headView.findViewById(R.id.scdd);
             xlts = (TextView) headView.findViewById(R.id.xlts);
-            leader_name = (SuperTextView) headView.findViewById(R.id.leader_name);
-            userJoin = (SuperTextView) headView.findViewById(R.id.userJoin);
+            leader_name = (TextView) headView.findViewById(R.id.leader_name);
+            userJoin = (TextView) headView.findViewById(R.id.userJoin);
             zeng_title = (TextView) headView.findViewById(R.id.zeng_title);
             zeng_content = (TextView) headView.findViewById(R.id.zeng_content);
 //            scxl.setText(mountaineering.data.lineFeature);
 //            xlts.setText("线路特色：" + mountaineering.data.lineFeature);
-            scdd.setLeftString("上车地点:" + mountaineering.data.loaction);
+            scdd.setText("上车地点: " + mountaineering.data.loaction);
 //            fjzs.setLeftString("风景指数:" + mountaineering.data.star + "颗❤");
             ratingbar.setStar(mountaineering.data.star);
-            leader_name.setLeftString("报名列报:" + mountaineering.data.userJoin);
-            userJoin.setLeftString("活动领队:" + mountaineering.data.leaderName);
+            leader_name.setText("报名列报: " + mountaineering.data.userJoin);
+            userJoin.setText("活动领队: " + mountaineering.data.leaderName);
             zeng_title.setText(mountaineering.data.specialOffers);
             zeng_content.setText(mountaineering.data.desc);
 
@@ -257,12 +254,12 @@ public class FragmentHome extends BaseLazyFragment {
         } else {
 //            xlts.setText("线路特色：" + mountaineering.data.lineFeature);
             setWithSpan(xlts, mountaineering.data.lineFeature);
-            scdd.setLeftString("上车地点:" + mountaineering.data.loaction);
+            scdd.setText("上车地点: " + mountaineering.data.loaction);
 //            fjzs.setLeftString("风景指数:" + mountaineering.data.star + "颗❤");
             ratingbar.setStar(mountaineering.data.star);
 
-            leader_name.setLeftString("报名列报:" + mountaineering.data.userJoin);
-            userJoin.setLeftString("活动领队:" + mountaineering.data.leaderName);
+            leader_name.setText("报名列报: " + mountaineering.data.userJoin);
+            userJoin.setText("活动领队: " + mountaineering.data.leaderName);
             zeng_title.setText(mountaineering.data.specialOffers);
             zeng_content.setText(mountaineering.data.desc);
         }
@@ -474,7 +471,7 @@ public class FragmentHome extends BaseLazyFragment {
                     addHeaderView(mountaineering.data.listImagesBanner);
 
 
-                    Toast.makeText(mActivity, mountaineering.data.leaderName + "", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mActivity, mountaineering.data.leaderName + "", Toast.LENGTH_SHORT).show();
 
 
                     addHeaderView1(mountaineering);
