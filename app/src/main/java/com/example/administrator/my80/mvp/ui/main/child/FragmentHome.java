@@ -20,6 +20,7 @@ import com.example.administrator.my80.adapter.OneAdapter;
 import com.example.administrator.my80.base.fragment.BaseLazyFragment;
 import com.example.administrator.my80.mvp.m.api.Api;
 import com.example.administrator.my80.mvp.m.entity.UserInfo;
+import com.example.administrator.my80.mvp.m.entity.base.BaseJson;
 import com.example.administrator.my80.mvp.m.entity.mountaineering.ImagesBean;
 import com.example.administrator.my80.mvp.m.entity.mountaineering.Mountaineering;
 import com.example.administrator.my80.mvp.p.UserInfoPresenter;
@@ -243,7 +244,7 @@ public class FragmentHome extends BaseLazyFragment {
             scdd.setText("上车地点: " + mountaineering.data.loaction);
 //            fjzs.setLeftString("风景指数:" + mountaineering.data.star + "颗❤");
             ratingbar.setStar(mountaineering.data.star);
-            leader_name.setText("报名列报: " + mountaineering.data.userJoin);
+            leader_name.setText("报名方式: " + mountaineering.data.userJoin);
             userJoin.setText("活动领队: " + mountaineering.data.leaderName);
             zeng_title.setText(mountaineering.data.specialOffers);
             zeng_content.setText(mountaineering.data.desc);
@@ -258,7 +259,7 @@ public class FragmentHome extends BaseLazyFragment {
 //            fjzs.setLeftString("风景指数:" + mountaineering.data.star + "颗❤");
             ratingbar.setStar(mountaineering.data.star);
 
-            leader_name.setText("报名列报: " + mountaineering.data.userJoin);
+            leader_name.setText("报名方式: " + mountaineering.data.userJoin);
             userJoin.setText("活动领队: " + mountaineering.data.leaderName);
             zeng_title.setText(mountaineering.data.specialOffers);
             zeng_content.setText(mountaineering.data.desc);
@@ -531,6 +532,10 @@ public class FragmentHome extends BaseLazyFragment {
         @GET("mountaineering/lately")
 //        @FormUrlEncoded
         Call<Mountaineering> lately();
+
+        @GET("mountaineering/list")
+//        @FormUrlEncoded
+        Call<BaseJson<List<Mountaineering.DataBean>>> list();
 
 
 //        Call<ResponseBody> url(@Query("id") String id);

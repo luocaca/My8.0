@@ -6,10 +6,17 @@
 
 
     <string name="home">首页</string>
+    <string name="outdoor">户外知识</string>
     <string name="navigation_home">首页</string>
     <string name="navigation_shop">商城</string>
     <string name="navigation_favor">收藏夹</string>
     <string name="navigation_tips">户外知识</string>
     <string name="navigation_person">我的</string>
     <string name="navigation_enroll">服务协议</string>
+
+
+    <string name="menu_publish_activity">发布新活动</string>
+    <string name="menu_publish_footmark">发布足迹</string>
+
+
 </resources>

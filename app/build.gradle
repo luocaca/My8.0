@@ -165,12 +165,13 @@ dependencies {
 //        exclude module: 'resthttp'
     }
 
+//    compile 'cn.alien95:resthttp:1.0.8'
 
 //    compile 'cn.alien95:resthttp:1.0.7'
 
 //    compile 'com.squareup.retrofit2:converter-scalars:2.0.0'
 
-//    compile 'org.jsoup:jsoup:1.11.3'
+    compile 'org.jsoup:jsoup:1.11.3'
 
 
     compile ('com.github.LuckSiege.PictureSelector:picture_library:v2.2.3'){
@@ -181,7 +182,8 @@ dependencies {
 
     compile 'com.afollestad.material-dialogs:commons:0.9.6.0'
     compile 'com.hedgehog.ratingbar:app:1.1.2'
-
+    compile 'com.github.rubensousa:floatingtoolbar:1.5.1'
+    compile 'com.lzy.widget:ninegridview:0.2.0'
 }
 
 

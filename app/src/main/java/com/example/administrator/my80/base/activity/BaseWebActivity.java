@@ -5,6 +5,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 
 import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.R;
@@ -12,20 +13,26 @@ import com.example.administrator.my80.i.OnProgressChangeListener;
 import com.example.art.base.BaseActivity;
 import com.example.art.mvp.IPresenter;
 import com.gyf.barlibrary.ImmersionBar;
+import com.zhy.autolayout.AutoRelativeLayout;
 
 import butterknife.BindView;
-
-import static com.example.administrator.my80.R.id.toolbar;
 
 /**
  * 用于显示 基础 的web 页面
  */
 
 public abstract class BaseWebActivity extends BaseActivity {
-    private static final String TAG = "BaseWebViewActivity";
+    private static final String TAG = "BaseWebActivity";
 
     @BindView(R.id.web)
     WebView web;
+
+    @BindView(R.id.toolbar_right)
+    public AutoRelativeLayout mToolbarRight;
+
+    @BindView(R.id.toolbar_title)
+    public TextView mToolbarTitle;
+
 
     @Override
     public int initView(Bundle savedInstanceState) {
@@ -34,10 +41,14 @@ public abstract class BaseWebActivity extends BaseActivity {
 
     @Override
     public void initData(Bundle savedInstanceState) {
+
+
+
         ImmersionBar.with(this)
+//                .statusBarColorTransformEnable(true)
                 .statusBarDarkFont(false)
-                .titleBar(toolbar)
-                .navigationBarColor(R.color.white)
+                .titleBar(R.id.toolbar)
+//                .navigationBarColor(R.color.white)
                 .init();
         //启用支持javascript
         WebSettings settings = web.getSettings();
@@ -63,8 +74,11 @@ public abstract class BaseWebActivity extends BaseActivity {
 //                view.loadUrl(url);
                 onLoadUrl(view, url);
                 ALog.e(url);
+
+
                 return true;
             }
+
 //            @Override
 //            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
 //                // TODO Auto-generated method stub

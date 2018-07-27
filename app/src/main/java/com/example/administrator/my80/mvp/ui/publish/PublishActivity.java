@@ -101,7 +101,7 @@ public class PublishActivity extends BaseActivity<MountaineeringPresenter> imple
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UiUtils.snackbarText("snack");
+                UiUtils.snackbarText("修改最新发布内容");
 
 
 //                FragmentHome.ApiInterface apiService = FragmentHome.getClient(PublishActivity.this, "http://192.168.1.142/hello-ssm/").create(FragmentHome.ApiInterface.class);
@@ -222,11 +222,11 @@ public class PublishActivity extends BaseActivity<MountaineeringPresenter> imple
         //http://192.168.1.130/hello-ssm/mountaineering/publish
         String host = "";
         if (changeId != -1) {
-            host = Api.host+"mountaineering/update";
+            host = Api.host + "mountaineering/update";
 
             ALog.i("host is = " + host);
         } else {
-            host = Api.host+"mountaineering/add";
+            host = Api.host + "mountaineering/add";
             ALog.i("host is = " + host);
         }
         UiUtils.snackbarText(host);
@@ -234,7 +234,7 @@ public class PublishActivity extends BaseActivity<MountaineeringPresenter> imple
         String[] strings = new String[]{
 //              "http://www.luocaca.cn/hello-ssm/mountaineering/add",
                 host,
-                changeId+"",
+                changeId + "",
                 getInputText(title),
                 getInputText(price),
                 getInputText(top_banner),

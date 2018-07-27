@@ -291,7 +291,7 @@ public final class GlobalConfiguration implements ConfigModule {
 
             @Override
             public void onActivityPaused(Activity activity) {
-                Timber.w(activity + " - onActivityPaused");
+//                Timber.w(activity + " - onActivityPaused");
             }
 
             @Override

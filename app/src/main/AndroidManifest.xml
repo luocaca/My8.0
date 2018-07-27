@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.
         autofocus" />
@@ -54,8 +55,8 @@
 
         <!-- glide配置 -->
         <!--<meta-data-->
-            <!--android:name="com.example.art.widget.imageloader.glide.GlidConfiguration"-->
-            <!--android:value="GlideModule" />-->
+        <!--android:name="com.example.art.widget.imageloader.glide.GlidConfiguration"-->
+        <!--android:value="GlideModule" />-->
 
         <!-- art配置 -->
         <meta-data
@@ -66,6 +67,9 @@
             android:name=".mvp.ui.publish.PublishActivity"
             android:label="@string/title_activity_publish"
             android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".mvp.ui.web.OutdoorDetailActivity"
+            android:label="@string/outdoor" />
     </application>
 
 </manifest>

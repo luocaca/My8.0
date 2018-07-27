@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_1"
+        android:icon="@drawable/ic_add_circle_black_24dp"
+        android:title="@string/menu_publish_activity" />
+
+    <item
+        android:id="@+id/menu_2"
+        android:icon="@drawable/ic_add_box_black_24dp"
+        android:title="@string/menu_publish_footmark" />
+    <item
+        android:id="@+id/menu_3"
+        android:icon="@drawable/ic_more_horiz_black_24dp"
+        android:title="@string/menu_publish_footmark"
+   />
+
+
+    <item
+        android:id="@+id/menu_4"
+        android:icon="@drawable/ic_close_black_24dp"
+        android:title="@string/menu_publish_footmark" />
+
+
+</menu>

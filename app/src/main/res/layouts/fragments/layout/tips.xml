@@ -5,13 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <com.luoxx.xxlib.weidet.CoreRecyclerView
+        android:id="@+id/coreRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <WebView
         android:id="@+id/web"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        />
+        android:visibility="gone" />
 
 </LinearLayout>
 

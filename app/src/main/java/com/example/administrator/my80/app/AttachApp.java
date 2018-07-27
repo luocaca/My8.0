@@ -6,6 +6,8 @@ import android.support.multidex.MultiDex;
 
 import com.blankj.aloglibrary.ALog;
 import com.example.administrator.my80.BuildConfig;
+import com.example.administrator.my80.util.GlideImageLoader;
+import com.lzy.ninegrid.NineGridView;
 
 import cn.alien95.resthttp.request.RestHttp;
 import cn.bmob.v3.Bmob;
@@ -31,6 +33,8 @@ public class AttachApp {
         Bmob.initialize(baseApplication, appaction_id);
         ALog.Builder builder = new ALog.Builder(baseApplication);
 
+
+        NineGridView.setImageLoader(new GlideImageLoader());
 
         new ALog.Builder(baseApplication)
                 .setLogSwitch(BuildConfig.DEBUG)// 设置log总开关，默认开

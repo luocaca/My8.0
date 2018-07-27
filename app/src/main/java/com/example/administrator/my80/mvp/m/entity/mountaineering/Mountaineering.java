@@ -1,6 +1,7 @@
 package com.example.administrator.my80.mvp.m.entity.mountaineering;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,10 +47,29 @@ public class Mountaineering implements Serializable {
         public String loaction;
         public String lineFeature;
         public int star;
-        public int price ;
+        public int price;
         public String specialOffers;
         public List<ImagesBean> listImagesBanner;
         public List<ImagesBean> listImagesMore;
+
+        List<String> list = new ArrayList<>();
+
+        public List<String> allUrls() {
+            list.clear();
+
+            if (listImagesBanner != null && !listImagesBanner.isEmpty()) {
+                for (ImagesBean imagesBean : listImagesBanner) {
+                    list.add(imagesBean.url);
+                }
+            }
+            if (listImagesMore != null && !listImagesMore.isEmpty()) {
+                for (ImagesBean imagesBean : listImagesMore) {
+                    list.add(imagesBean.url);
+                }
+            }
+
+            return list;
+        }
 
 
     }
